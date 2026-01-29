@@ -36,7 +36,8 @@ public class Turret : Building
         {
             if (hit.TryGetComponent<IHealthComp>(out var h) && 
                 hit.TryGetComponent<TeamComp>(out var t) && 
-                t.team.IsEnemy(teamComp.team))
+                t.team.IsEnemy(teamComp.team) &&
+                h.CanDamage)
             {
                 float dst = Vector2.Distance(transform.position, hit.transform.position);
                 if (target == null || dst < prevDst)

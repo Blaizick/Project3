@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 
 [Serializable]
-public class ResourceStack
+public class ResourceStack : IFormattable
 {
     public CmsEnt resource;
     public float count;
@@ -19,6 +19,15 @@ public class ResourceStack
     public ResourceStack Deserialize()
     {
         return new(Cms.Get(resource.tag), count);
+    }
+
+    public string ToString(string format, IFormatProvider formatProvider)
+    {
+        return $"{resource.Get<CmsNameComp>().name}: {count}";
+    }
+    public override string ToString()
+    {
+        return ToString(null, null);        
     }
 }
 
@@ -69,19 +78,42 @@ public class CraftingBuilding : Building
 {
     [NonSerialized] public CmsEnt recipe;
 
-    [NonSerialized] public bool crafting;
-    [NonSerialized] public float craftProgress;
-
     [Inject, NonSerialized] public ResourcesSystem resources;
+    [Inject, NonSerialized] public Container container;
+
+    public CraftSystem craftSystem;
 
     public override void Init()
     {
-        recipe = cmsEnt.Get<CmsRecipeComp>().recipe;
+        craftSystem = container.Create<CraftSystem>();
+        craftSystem.recipe = cmsEnt.Get<CmsRecipeComp>().recipe;
 
         base.Init();
     }
 
     public override void Update()
+    {
+        craftSystem.Update();        
+        base.Update();
+    }
+}
+
+
+public class CraftSystem
+{
+    public ResourcesSystem resources; 
+
+    public CmsEnt recipe;
+
+    public bool crafting;
+    public float craftProgress;
+
+    public CraftSystem(ResourcesSystem resources)
+    {
+        this.resources = resources;
+    }
+
+    public void Update()
     {
         if (crafting)
         {
@@ -108,7 +140,5 @@ public class CraftingBuilding : Building
                 }
             }
         }
-        
-        base.Update();
     }
 }

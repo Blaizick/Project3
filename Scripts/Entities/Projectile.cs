@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
 
     public void Update()
     {
-        if (MathUtils.IsWithin(transform.position, target, 0.25f))
+        if (MathUtils.IsWithin(transform.position, target))
         {
             Destroy(gameObject);
         }
@@ -30,7 +30,8 @@ public class Projectile : MonoBehaviour
     {
         if (collision.TryGetComponent<IHealthComp>(out var h) && 
             collision.TryGetComponent<TeamComp>(out var t) && 
-            t.team.IsEnemy(teamComp.team))
+            t.team.IsEnemy(teamComp.team) &&
+            h.CanDamage)
         {
             h.TakeDamage(cmsEnt.Get<CmsDamageComp>().damage);
             Destroy(gameObject);

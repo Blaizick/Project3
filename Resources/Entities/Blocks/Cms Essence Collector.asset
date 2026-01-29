@@ -19,6 +19,10 @@ MonoBehaviour:
   - rid: 2352841136075964671
   - rid: 2352841189267341383
   - rid: 2352841189267341386
+  - rid: 2352841189267341389
+  - rid: 2352841204727808075
+  - rid: 2352841204727808082
+  - rid: 2352841204727808083
   references:
     version: 2
     RefIds:
@@ -43,3 +47,19 @@ MonoBehaviour:
       data:
         resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
         count: 10
+    - rid: 2352841189267341389
+      type: {class: CmsConstructTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        time: 5
+    - rid: 2352841204727808075
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 100
+    - rid: 2352841204727808082
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Essence Collector
+    - rid: 2352841204727808083
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: Collects essence flying in air.

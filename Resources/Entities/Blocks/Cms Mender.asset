@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Mender
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: Mender
+  comps:
+  - rid: 2352841136075964669
+  - rid: 2352841136075964670
+  - rid: 2352841136075964671
+  - rid: 2352841189267341386
+  - rid: 2352841189267341389
+  - rid: 2352841204727808068
+  - rid: 2352841204727808070
+  - rid: 2352841204727808071
+  - rid: 2352841204727808081
+  - rid: 2352841204727808080
+  references:
+    version: 2
+    RefIds:
+    - rid: 2352841136075964669
+      type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
+      data:
+        sprite: {fileID: 5454452688900833447, guid: 03f78142923013f40bc581cf168d6d6f, type: 3}
+    - rid: 2352841136075964670
+      type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 6595871151224210978, guid: 6fab32468a1cb5544b53b4b6b4583f2b, type: 3}
+    - rid: 2352841136075964671
+      type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
+      data:
+        size: 1
+    - rid: 2352841189267341386
+      type: {class: CmsResourceRequirementComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        count: 10
+    - rid: 2352841189267341389
+      type: {class: CmsConstructTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        time: 5
+    - rid: 2352841204727808068
+      type: {class: CmsHealComp, ns: , asm: Assembly-CSharp}
+      data:
+        heal: 10
+    - rid: 2352841204727808070
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 50
+    - rid: 2352841204727808071
+      type: {class: CmsRangeComp, ns: , asm: Assembly-CSharp}
+      data:
+        range: 5
+    - rid: 2352841204727808080
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: Mends...
+    - rid: 2352841204727808081
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Mender

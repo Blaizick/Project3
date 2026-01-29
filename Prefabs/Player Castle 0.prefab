@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: -5924199242422569575}
   - component: {fileID: -2199058612649750165}
   - component: {fileID: 4333900289290670165}
-  - component: {fileID: 3458123024206280592}
   - component: {fileID: -355623429019892595}
   - component: {fileID: 4316791801399384690}
+  - component: {fileID: 368567393353116622}
   m_Layer: 0
   m_Name: Player Castle 0
   m_TagString: Untagged
@@ -49,9 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37834d8e1d00664ebbf66db0049d195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CastleGrid
-  tiles: []
-  size: 0
-  castle: {fileID: 3458123024206280592}
 --- !u!50 &-2199058612649750165
 Rigidbody2D:
   serializedVersion: 5
@@ -75,7 +72,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -125,24 +122,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9, y: 9}
   m_EdgeRadius: 0
---- !u!114 &3458123024206280592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4165473079494316104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f32a88db1e88c4c8e50a2693f63cd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Castle
-  cmsEnt: {fileID: 0}
-  col: {fileID: 4333900289290670165}
-  rb: {fileID: -2199058612649750165}
-  grid: {fileID: -5924199242422569575}
-  teamComp: {fileID: -355623429019892595}
-  healthComp: {fileID: 4316791801399384690}
 --- !u!114 &-355623429019892595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +157,21 @@ MonoBehaviour:
   onHealed:
     m_PersistentCalls:
       m_Calls: []
+  canDamage: 0
+--- !u!114 &368567393353116622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4165473079494316104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a890b4f4ed3bbf049bcdf61684f580a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCastle
+  col: {fileID: 4333900289290670165}
+  rb: {fileID: -2199058612649750165}
+  grid: {fileID: -5924199242422569575}
+  teamComp: {fileID: -355623429019892595}
+  healthComp: {fileID: 4316791801399384690}

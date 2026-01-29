@@ -1,4 +1,6 @@
 using System;
+using BJect;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class DesktopInput : MonoBehaviour
@@ -13,6 +15,14 @@ public class DesktopInput : MonoBehaviour
     public bool canPlaceSPlan;
 
     public Tile tileUnderCursor;
+
+    public RectTransform breakSelectionImgTr;
+    public GameObject breakSelectionImgRoot;
+    [NonSerialized] public Vector2 breakSelection0;
+    [NonSerialized] public Vector2 breakSelection1;
+    [NonSerialized] public bool breaking;
+
+    [NonSerialized, Inject] public BlockTooltipUi blockTooltipUi;
 
     public void Init()
     {
@@ -75,20 +85,67 @@ public class DesktopInput : MonoBehaviour
             Camera.main.transform.position += (Vector3)mov;
         }
 
-        if (actions.Player.Break.WasPerformedThisFrame())
+        if (actions.Player.Break.IsPressed())
         {
-            DeselectSPlan();
+            if (sPlanBlock)
+            {
+                DeselectSPlan();
+            }
+            else
+            {
+                breakSelection1 = mousePos;
+                if (!breaking)
+                {
+                    breakSelection0 = mousePos;
+                }
+                breaking = true;
+                breakSelectionImgTr.anchoredPosition = (breakSelection0 + breakSelection1) * 0.5f;
+                Vector2 min = new Vector2(Mathf.Min(breakSelection0.x, breakSelection1.x), Mathf.Min(breakSelection0.y, breakSelection1.y));
+                Vector2 max = new Vector2(Mathf.Max(breakSelection0.x, breakSelection1.x), Mathf.Max(breakSelection0.y, breakSelection1.y));
+                breakSelectionImgTr.sizeDelta = max - min;
+            }
         }
+        if (actions.Player.Break.WasReleasedThisFrame())
+        {
+            breaking = false;
+        
+            var tmp0 = Camera.main.ScreenToWorldPoint(breakSelection0);
+            var tmp1 = Camera.main.ScreenToWorldPoint(breakSelection1);
+            
+            Vector2 min = new Vector2(Mathf.Min(tmp0.x, tmp1.x), Mathf.Min(tmp0.y, tmp1.y));
+            Vector2 max = new Vector2(Mathf.Max(tmp0.x, tmp1.x), Mathf.Max(tmp0.y, tmp1.y));
+            
+            var pos = (tmp0 + tmp1) * 0.5f;
+            var size = max - min;
+
+            var hits = Physics2D.OverlapBoxAll(pos, size, 0.0f);
+            foreach (var hit in hits)
+            {
+                if (hit.TryGetComponent<Building>(out var b) &&
+                    b.CanBreak() &&
+                    b.teamComp.team.IsAlly(Teams.ally))
+                {
+                    b.grid.BreakBuild(b);
+                }
+            }
+        }
+        breakSelectionImgRoot.SetActive(breaking);
 
         float zoomDt = -actions.Player.CameraZoom.ReadValue<float>() * 0.5f;
         Camera.main.orthographicSize += zoomDt;
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 2, 10);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 2, 10);    
+    
+        blockTooltipUi.root.SetActive(sPlanBlock);
+        if (sPlanBlock)
+        {
+            blockTooltipUi.Set(BlockUtils.GetTooltipTitle(sPlanBlock), BlockUtils.GetDesc(sPlanBlock));
+        }
     }
 
     public void PlaceSPlan()
     {
         Vector2Int pos = GeometryUtils.GetBuildAnchor(tileUnderCursor.pos, sPlanBlock.Get<CmsGridSizeComp>().size);
-        tileUnderCursor.grid.PlaceBlock(sPlanBlock, pos);
+        tileUnderCursor.grid.StartConstructing(sPlanBlock, pos);
     }
 
     public void SelectSPlan(CmsEnt block)

@@ -8,7 +8,10 @@ public class EnemyCastle : Castle
 
     public override void Update()
     {
-        rb.linearVelocity = (player.castle.grid.transform.position - grid.transform.position).normalized * 2.0f;
+        if (player.castle && player.castle.grid)
+        {
+            rb.linearVelocity = (player.castle.grid.transform.position - grid.transform.position).normalized * 2.0f;
+        }
     
         base.Update();
     }
@@ -37,6 +40,11 @@ public class EnemySpawner
 
     public void Update()
     {
+        if (!player.castle || !player.castle.grid)
+        {
+            return;
+        }
+
         spawnProgress += Time.deltaTime / 2.0f;
 
         if (spawnProgress > 1.0f)
@@ -59,6 +67,7 @@ public class EnemySpawner
             while (Vector2.Distance(pos, player.castle.grid.transform.position) < min);
 
             p.grid.transform.position = pos;
+            p.grid.PlaceBlock(Blocks.turret0, new(0, 0));
 
             spawnProgress = 0.0f;
         }

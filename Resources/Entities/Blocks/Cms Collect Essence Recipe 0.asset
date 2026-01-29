@@ -10,21 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
-  m_Name: Cms Collect Essence Recipe
+  m_Name: Cms Collect Essence Recipe 0
   m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
-  tag: CollectEssenceRecipe
+  tag: CollectEssenceRecipe0
   comps:
   - rid: 2352841189267341384
   - rid: 2352841189267341385
+  - rid: 2352841204727808084
   references:
     version: 2
     RefIds:
     - rid: 2352841189267341384
       type: {class: CmsOutComp, ns: , asm: Assembly-CSharp}
       data:
-        res: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
         count: 1
     - rid: 2352841189267341385
       type: {class: CmsCraftTimeComp, ns: , asm: Assembly-CSharp}
       data:
         time: 1
+    - rid: 2352841204727808084
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Collect Essence

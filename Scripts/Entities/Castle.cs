@@ -1,5 +1,6 @@
 using System;
 using BJect;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Castle : MonoBehaviour
@@ -14,7 +15,7 @@ public class Castle : MonoBehaviour
     public TeamComp teamComp;
     public HealthComp healthComp;
 
-    public void Init()
+    public virtual void Init()
     {
         healthComp.Set(cmsEnt);
         healthComp.Init();
@@ -24,10 +25,10 @@ public class Castle : MonoBehaviour
 
     public virtual void Update()
     {
-        
+        healthComp.canDamage = !grid.HasBuilding();
     }
 
-    public class Factory : BaseFactory, IFactory<Castle, CmsEnt, Team>
+    public class Factory : BaseFactory
     {
         public Tile.Factory tileFactory;
 

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
-  m_Name: Cms Essence
+  m_Name: Cms Construct Building Profile
   m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
-  tag: Essence
+  tag: ConstructBuildingProfile
   comps:
-  - rid: 2352841204727808086
+  - rid: 2352841189267341387
   references:
     version: 2
     RefIds:
-    - rid: 2352841204727808086
-      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+    - rid: 2352841189267341387
+      type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
       data:
-        name: Essence
+        pfb: {fileID: 3459616714845089839, guid: 61eb6ec64fd09fe4a906186eef603903, type: 3}

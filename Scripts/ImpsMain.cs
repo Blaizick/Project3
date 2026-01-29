@@ -21,6 +21,7 @@ public class ImpsMain : MonoBehaviour
         Teams.Init();
         CmsResources.Init();
         Blocks.Init();
+        Profiles.Init();
 
         resolver.Init();
 
@@ -39,7 +40,6 @@ public class ImpsMain : MonoBehaviour
         enemySpawner.Update();
     }
 }
-
 
 
 public class ResourcesSystem

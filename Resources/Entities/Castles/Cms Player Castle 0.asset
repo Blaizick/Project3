@@ -10,22 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
-  m_Name: Cms Enemy Castle 0
+  m_Name: Cms Player Castle 0
   m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
-  tag: EnemyCastle0
+  tag: PlayerCastle0
   comps:
   - rid: 2352841136075964666
   - rid: 2352841136075964667
   - rid: 2352841136075964668
-  - rid: 2352841159246348380
+  - rid: 2352841159246348381
+  - rid: 2352841204727808074
+  - rid: 2352841204727808077
   references:
     version: 2
     RefIds:
     - rid: 2352841136075964666
       type: {class: CmsFloorPfbComp, ns: , asm: Assembly-CSharp}
       data:
-        floorA: {fileID: -2556022810697303489, guid: c610ad82215a53740af4e8062896b050, type: 3}
-        floorB: {fileID: 892652266389896989, guid: 4929687a7c58fd247a87ca978d8f8ddf, type: 3}
+        floorA: {fileID: -2556022810697303489, guid: d3d780778e9c12f4ebc0d2ee3018fb86, type: 3}
+        floorB: {fileID: 892652266389896989, guid: c781554172633b14b9944f614496aefe, type: 3}
     - rid: 2352841136075964667
       type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
       data:
@@ -34,7 +36,15 @@ MonoBehaviour:
       type: {class: CmsOffsetComp, ns: , asm: Assembly-CSharp}
       data:
         offset: {x: 0, y: 0}
-    - rid: 2352841159246348380
+    - rid: 2352841159246348381
       type: {class: CmsCastlePfbComp, ns: , asm: Assembly-CSharp}
       data:
-        pfb: {fileID: 5361526335954984728, guid: 62c0734f313d44342afe4239908f12d3, type: 3}
+        pfb: {fileID: 368567393353116622, guid: 7b92aa2d70a62d94eaae8d921057da17, type: 3}
+    - rid: 2352841204727808074
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 1000
+    - rid: 2352841204727808077
+      type: {class: CmsRecipeComp, ns: , asm: Assembly-CSharp}
+      data:
+        recipe: {fileID: 11400000, guid: 0020baf0aa4308b4ba76f0170f235cd8, type: 2}

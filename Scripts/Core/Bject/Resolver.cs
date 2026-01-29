@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -68,7 +67,11 @@ namespace BJect
 
         public object CreateInstance(BindSignature signature)
         {
-            var constructors = signature.type.GetConstructors().OrderBy(c => c.GetParameters().Count());
+            return CreateInstance(signature.type);
+        }
+        public object CreateInstance(Type type)
+        {
+            var constructors = type.GetConstructors().OrderBy(c => c.GetParameters().Count());
         
             foreach (var c in constructors)
             {
@@ -91,10 +94,10 @@ namespace BJect
                 }    
                 if (success)
                 {
-                    return Activator.CreateInstance(signature.type, args.ToArray());
+                    return Activator.CreateInstance(type, args.ToArray());
                 }
             }
-            Debug.LogError($"Couldn't find a constructor for {signature.type.Name}!");
+            Debug.LogError($"Couldn't find a constructor for {type.Name}!");
             return null;
         }
         public void Register(BindSignature signature, object obj)
@@ -215,33 +218,19 @@ namespace BJect
         {
             return Instantiate(pfb, root, data).GetComponent<T>();
         }
-    }
 
-    public interface IFactory<T1, T2, T3, T4, T5, T6> : IFactory
-    {
-        public T1 Use(T2 a, T3 b, T4 c, T5 d, T6 e);
+        public T Create<T>()
+        {
+            return (T)Create(typeof(T));
+        }
+        public object Create(Type type)
+        {
+            var obj = CreateInstance(type);
+            ResolveFields(obj);
+            ResolveMethods(obj);
+            return obj;
+        }
     }
-    public interface IFactory<T1, T2, T3, T4, T5> : IFactory
-    {
-        public T1 Use(T2 a, T3 b, T4 c, T5 d);
-    }
-    public interface IFactory<T1, T2, T3, T4> : IFactory
-    {
-        public T1 Use(T2 a, T3 b, T4 c);
-    }
-    public interface IFactory<T1, T2, T3> : IFactory
-    {
-        public T1 Use(T2 a, T3 b);
-    }
-    public interface IFactory<T1, T2> : IFactory
-    {
-        public T1 Use(T2 a);
-    }
-    public interface IFactory<T1> : IFactory
-    {
-        public T1 Use();
-    }
-    public interface IFactory{}
 
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Method | AttributeTargets.Parameter)]
     public class InjectAttribute : Attribute

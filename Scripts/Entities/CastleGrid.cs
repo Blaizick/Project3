@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BJect;
-using Mono.Cecil;
 using UnityEngine;
 
 public class CastleGrid : MonoBehaviour
@@ -10,16 +9,18 @@ public class CastleGrid : MonoBehaviour
     [NonSerialized] public List<Tile> tiles = new();
     [NonSerialized] public int size;
 
-    [Inject, NonSerialized] public Building.Factory buildFactory;
     [NonSerialized] public Castle castle;
 
     [Inject, NonSerialized] public ResourcesSystem resources;
 
     [Inject, NonSerialized] public Tile.Factory tileFactory;
 
+    [NonSerialized] public CmsEnt cmsEnt;
+
+    [Inject, NonSerialized] public Container container;
+
     public void Init()
     {
-        
     }
 
     public int GridPosToI(Vector2Int vec)
@@ -82,15 +83,28 @@ public class CastleGrid : MonoBehaviour
         return resources.Has(ResourcesUtils.GetAllStacks<CmsResourceRequirementComp>(cmsEnt));
     }
 
+    public Building StartConstructing(CmsEnt cmsEnt, Vector2Int pos)
+    {
+        resources.Remove(ResourcesUtils.GetAllStacks<CmsResourceRequirementComp>(cmsEnt));
+        return PlaceBlock(cmsEnt, Profiles.constructBuildProfile.Get<CmsPfbComp>().pfb.GetComponent<Building>(), pos);
+    }
+
     public Building PlaceBlock(CmsEnt cmsEnt, Vector2Int pos)
+    {
+        return PlaceBlock(cmsEnt, cmsEnt.Get<CmsPfbComp>().pfb.GetComponent<Building>(), pos);
+    }
+    public Building PlaceBlock(CmsEnt cmsEnt, Building pfb, Vector2Int pos)
     {
         if (cmsEnt == null)
             return null;
 
         var size = cmsEnt.Get<CmsGridSizeComp>();
 
-        var b = buildFactory.Use(cmsEnt, castle.teamComp.team, transform);
+        var b = container.Instantiate(pfb, transform);
+        b.cmsEnt = cmsEnt;
+        b.grid = this;
         b.pos = pos;
+        b.teamComp.team = castle.teamComp.team;
 
         for (int i = 0; i < size.size * size.size; i++)
         {
@@ -101,8 +115,6 @@ public class CastleGrid : MonoBehaviour
         }
 
         b.transform.position = GetBuildPosition(pos, size.size);
-
-        resources.Remove(ResourcesUtils.GetAllStacks<CmsResourceRequirementComp>(cmsEnt));
 
         b.Init();
         return b;
@@ -127,6 +139,23 @@ public class CastleGrid : MonoBehaviour
                 
             tiles.Add(s);
         }
+    }
+
+    public void BreakBuild(Building build)
+    {
+        for (int i = 0; i < build.Size * build.Size; i++)
+        {
+            int x = build.pos.x + i % build.Size;
+            int y = build.pos.y + i / build.Size;
+        
+            tiles[x + y * size].build = null;
+        }
+        Destroy(build.gameObject);
+    }
+
+    public bool HasBuilding()
+    {
+        return tiles.FindIndex(t => t.build != null) > -1;
     }
 }
 

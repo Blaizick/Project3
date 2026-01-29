@@ -6,6 +6,7 @@ public interface IHealthComp
 {
     void Heal(float heal);
     void TakeDamage(float damage);
+    bool CanDamage {get;}
 }
 
 public class HealthComp : MonoBehaviour, IHealthComp
@@ -17,12 +18,11 @@ public class HealthComp : MonoBehaviour, IHealthComp
     public UnityEvent<float> onDamaged = new();
     public UnityEvent<float> onHealed = new();
 
+    public bool canDamage = true;
+
     public void Set(CmsEnt cmsEnt)
     {
-        if (cmsEnt && cmsEnt.TryGet<CmsHealthComp>(out var h))
-        {
-            maxHealth = h.maxHealth;
-        }
+        maxHealth = cmsEnt.Get<CmsHealthComp>().maxHealth;
     }
 
     public void Init()
@@ -49,6 +49,8 @@ public class HealthComp : MonoBehaviour, IHealthComp
         onHealed?.Invoke(heal);
         health = Mathf.Clamp(health + heal, 0, maxHealth);
     }
+
+    public virtual bool CanDamage => canDamage;
 }
 
 [Serializable]

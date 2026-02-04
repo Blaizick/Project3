@@ -35,12 +35,12 @@ MonoBehaviour:
       type: {class: CmsResourceStackComp, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
-        count: 50
+        count: 20
     - rid: 4751459318738976851
       type: {class: CmsResourceStackComp, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: ccdb958a83eef0643b470feb714e719b, type: 2}
-        count: 10
+        count: 5
     - rid: 4751459337172418629
       type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
       data:

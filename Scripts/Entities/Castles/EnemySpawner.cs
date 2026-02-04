@@ -22,13 +22,16 @@ public class EnemySpawner
     public HashSet<CmsEnemySpawnEventComp> invokedEvents = new();
     public CmsEnemySpawnerComp lastSpawnerComp;
 
+    public MapSystem map;
+
     public float TimeLeft => lastSpawnerComp.timeNeeded - Time.time; 
 
-    public EnemySpawner(Player player, DiContainer container, CastlesSystem castles)
+    public EnemySpawner(Player player, DiContainer container, CastlesSystem castles, MapSystem map)
     {
         this.player = player;
         this.container = container;
         this.castles = castles;
+        this.map = map;
     }
 
     public void Init()
@@ -130,7 +133,7 @@ public class EnemySpawner
                 return false;
             }
         }
-        while (Vector2.Distance(ans, castle.grid.transform.position) < min);
+        while (Vector2.Distance(ans, castle.grid.transform.position) < min && !map.IsPositionInBounds(ans));
         return true;        
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using BJect;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Castle : MonoBehaviour
 {
@@ -15,16 +14,20 @@ public class Castle : MonoBehaviour
     public TeamComp teamComp;
     public HealthComp healthComp;
 
-    public UnityEvent onDestroy = new();
-
     [NonSerialized, Inject] public CastlesSystem castles;
 
-    public Vector2 moveCastle;
-
-    public Vector2 movePos;
-    public bool moving;
+    [NonSerialized] public Vector2 movePos;
+    [NonSerialized] public bool moving;
 
     public GameObject controlFrameRoot;
+    public LineRenderer lineRenderer;
+
+    [NonSerialized] public bool controlling; 
+    [NonSerialized] public bool controllingCastles;
+
+    [NonSerialized] public float appearProgress;
+
+    [NonSerialized, Inject] public CastleDisappearSystem castleDisappearSystem;
 
     public void SetMovePos(Vector2 pos)
     {
@@ -40,6 +43,7 @@ public class Castle : MonoBehaviour
         healthComp.onDie.AddListener(() => 
         {
             castles.Remove(this);
+            castleDisappearSystem.Disappear(this);
             Destroy(gameObject);
         });
 
@@ -51,6 +55,12 @@ public class Castle : MonoBehaviour
 
     public virtual void Update()
     {
+        appearProgress += Time.deltaTime / cmsEnt.Get<CmsAppearTimeComp>().appearTime;
+        foreach (var tile in grid.Tiles)
+        {
+            ((CastleTile)tile).appearProgress = appearProgress;
+        }
+
         if (moving)
         {
             if (MathUtils.IsWithin(transform.position, movePos, 0.05f))
@@ -65,6 +75,27 @@ public class Castle : MonoBehaviour
         }
 
         healthComp.canDamage = !grid.HasBuilding();
+    
+        if (lineRenderer)
+        {
+            if (moving && controllingCastles)
+            {
+                lineRenderer.positionCount = 2;
+                lineRenderer.SetPositions(new Vector3[]
+                {
+                    transform.position,
+                    movePos,
+                });
+            }
+            else
+            {
+                lineRenderer.positionCount = 0;
+            }
+        }
+        if (controlFrameRoot)
+        {
+            controlFrameRoot.SetActive(controllingCastles && controlling);
+        }
     }
 
     public class Factory : BaseFactory
@@ -78,11 +109,15 @@ public class Castle : MonoBehaviour
             var scr = container.Instantiate(cmsEnt.Get<CmsCastlePfbComp>().pfb);
             scr.cmsEnt = cmsEnt;
             scr.teamComp.team = team;
-            
+
             scr.transform.position = pos;
 
             scr.grid.Set(cmsEnt, scr);
-            
+
+            var shadow = container.Instantiate(Profiles.basePrefabs.Get<CmsShadowPfbComp>().shadowPfb, scr.transform);
+            shadow.transform.localScale = new Vector3(scr.grid.size, scr.grid.size, 1.0f);
+            shadow.transform.position = (Vector2)scr.transform.position - new Vector2(0.25f, 0.25f);
+
             Vector2 sizeV = new(scr.grid.size, scr.grid.size);
             scr.col.size = sizeV;
             scr.col.offset = Vector2.zero;
@@ -99,4 +134,10 @@ public class Castle : MonoBehaviour
 public class CmsCastlePfbComp : CmsComp
 {
     public Castle pfb;
+}
+
+[Serializable]
+public class CmsShadowPfbComp : CmsComp
+{
+    public GameObject shadowPfb;
 }

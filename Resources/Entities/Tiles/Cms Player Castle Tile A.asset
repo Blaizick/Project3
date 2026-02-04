@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Player Castle Tile A
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: PlayerCastleTileA
+  comps:
+  - rid: 4751459337172418635
+  - rid: 4751459337172418636
+  - rid: 4751459337172418643
+  references:
+    version: 2
+    RefIds:
+    - rid: 4751459337172418635
+      type: {class: CmsTilePfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: -2556022810697303489, guid: d3d780778e9c12f4ebc0d2ee3018fb86, type: 3}
+    - rid: 4751459337172418636
+      type: {class: CmsAppearTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        appearTime: 3
+    - rid: 4751459337172418643
+      type: {class: CmsShaderDensityComp, ns: , asm: Assembly-CSharp}
+      data:
+        density: 20

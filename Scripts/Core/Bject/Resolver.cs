@@ -260,7 +260,7 @@ namespace BJect
             return scr;
         }
 
-        public T Instantiate<T>(GameObject pfb, Transform root = null, List<object> data = null) where T : MonoBehaviour
+        public T Instantiate<T>(GameObject pfb, Transform root = null, List<object> data = null)
         {
             return Instantiate(pfb, root, data).GetComponent<T>();
         }

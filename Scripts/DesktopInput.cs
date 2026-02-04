@@ -23,7 +23,7 @@ public class DesktopInput : MonoBehaviour
 
     [NonSerialized] public Vector2 mousePos;
     [NonSerialized] public Vector2 mouseWorldPos;
-    [NonSerialized] public Tile tileUnderCursor;
+    [NonSerialized] public CastleTile tileUnderCursor;
 
     public SpriteRenderer sPlanSpriteRenderer;
     [NonSerialized] public CmsEnt sPlanBlock;
@@ -372,9 +372,10 @@ public class DesktopInput : MonoBehaviour
         
         foreach (var i in castles.ForTeam(Teams.ally).all)
         {
-            if (i && i.controlFrameRoot)
+            if (i)
             {
-                i.controlFrameRoot.SetActive(false);
+                i.controlling = false;
+                i.controllingCastles = state == InputState.Control && !controlBuildsMode;
             }
         }
         foreach (var i in buildings.ForTeam(Teams.ally).all)
@@ -400,14 +401,13 @@ public class DesktopInput : MonoBehaviour
             {
                 foreach (var i in castles.ForTeam(Teams.ally).all)
                 {
-                    if (i && i.controlFrameRoot)
+                    if (i)
                     {
-                        i.controlFrameRoot.SetActive(controlledCastles.Contains(i));
-                    }       
+                        i.controlling = true;
+                    }
                 }
             }
         }
-        
     }
 
     public void PlaceSPlan()

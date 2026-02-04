@@ -40,7 +40,6 @@ public static class Blocks
     }
 }
 
-
 public static class CmsResources
 {
     public static CmsEnt essence;
@@ -66,6 +65,7 @@ public static class Profiles
     public static CmsEnt playerCastlesProfile;
     public static CmsEnt enemySpawner0;
     public static CmsEnt capturePoints;
+    public static CmsEnt basePrefabs;
 
     public static void Init()
     {
@@ -73,9 +73,9 @@ public static class Profiles
         playerCastlesProfile = Cms.Get("PlayerCastlesProfile");
         enemySpawner0 = Cms.Get("EnemySpawner0");
         capturePoints = Cms.Get("CapturePoints0");
+        basePrefabs = Cms.Get("BasePrefabs");
     }
 }
-
 
 public static class Castles
 {

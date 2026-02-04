@@ -20,19 +20,20 @@ public class ResolverMain : Resolver
 
     public override void Resolve()
     {
-        Container.Bind<Tile.Factory>().AsSingle();
+        Container.Bind<CastleTile.Factory>().AsSingle();
         Container.Bind<Projectile.Factory>().AsSingle();
         Container.Bind<Castle.Factory>().AsSingle();
 
         Container.Bind<LayerMasks>().FromInstance(layerMasks).AsSingle();
+        Container.Bind<MapSystem>().FromInstance(map).AsSingle();
         Container.Bind<ResourcesSystem>().AsSingle();
         Container.Bind<Player>().AsSingle();
         Container.Bind<BuildingsSystem>().AsSingle();
         Container.Bind<CastlesSystem>().AsSingle();
         Container.Bind<EnemySpawner>().AsSingle();
         Container.Bind<UnlocksSystem>().AsSingle();
-        Container.Bind<MapSystem>().FromInstance(map).AsSingle();
         Container.Bind<CapturePointSystem>().AsSingle();
+        Container.Bind<CastleDisappearSystem>().AsSingle();
 
         Container.Bind<BlocksUi>().FromInstance(blocksUi).AsSingle();
         Container.Bind<BlockTooltipUi>().FromInstance(blockTooltipUi).AsSingle();

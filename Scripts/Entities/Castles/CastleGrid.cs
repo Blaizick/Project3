@@ -21,7 +21,7 @@ public class CastleGrid : BGrid
             int x = pos.x + i % size;
             int y = pos.y + i / size;
 
-            if (tiles[GridPosToI(new(x, y))].build != null)
+            if (((CastleTile)Tiles[GridPosToI(new(x, y))]).build != null)
             {
                 return true;
             }
@@ -67,7 +67,7 @@ public class CastleGrid : BGrid
             int x = i % size.size + pos.x;
             int y = i / size.size + pos.y;
             
-            tiles[GridPosToI(new(x, y))].build = b;
+            ((CastleTile)Tiles[GridPosToI(new(x, y))]).build = b;
         }
 
         buildings.Add(b);
@@ -81,24 +81,7 @@ public class CastleGrid : BGrid
     public void Set(CmsEnt cmsEnt, Castle castle)
     {
         this.castle = castle;
-        size = cmsEnt.Get<CmsGridSizeComp>().size;
-        
-        var floorPfb = cmsEnt.Get<CmsFloorPfbComp>();
-
-        int add = (size + 1) % 2;
-        for (int i = 0; i < size * size; i++)
-        {
-            int x = i % size;
-            int y = i / size;
-
-            int tmp = x + y * size + ((size % 2 == 0) ? y % 2 : 0);
-            var pfb = tmp % 2 == 0 ? floorPfb.floorA : floorPfb.floorB;
-
-            var s = tileFactory.Use(pfb, transform, new(x, y), this);
-            s.transform.position = GridToWorldPos(new Vector2Int(x, y));
-                
-            tiles.Add(s);
-        }
+        Set(cmsEnt);
     }
 
     public void BreakBuild(Building build)
@@ -108,7 +91,7 @@ public class CastleGrid : BGrid
             int x = build.pos.x + i % build.Size;
             int y = build.pos.y + i / build.Size;
         
-            tiles[GridPosToI(new(x, y))].build = null;
+            ((CastleTile)Tiles[GridPosToI(new(x, y))]).build = null;
         }
         buildings.Remove(build);
         Destroy(build.gameObject);
@@ -116,7 +99,7 @@ public class CastleGrid : BGrid
 
     public bool HasBuilding()
     {
-        return tiles.FindIndex(t => t.build != null) > -1;
+        return Tiles.FindIndex(t => ((CastleTile)t).build != null) > -1;
     }
 }
 

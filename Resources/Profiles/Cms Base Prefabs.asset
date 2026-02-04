@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Base Prefabs
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: BasePrefabs
+  comps:
+  - rid: 4751459337172418631
+  - rid: 4751459337172418647
+  references:
+    version: 2
+    RefIds:
+    - rid: 4751459337172418631
+      type: {class: CmsShadowPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        shadowPfb: {fileID: 6964192404690605683, guid: 5b472c866dd6cb049a5bbc5530bdfed8, type: 3}
+    - rid: 4751459337172418647
+      type: {class: CmsDisappearCastleGridPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 2236892258972614332, guid: 5b5a96797dc3516479003c7997f176b6, type: 3}

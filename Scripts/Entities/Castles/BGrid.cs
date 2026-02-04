@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class BGrid : MonoBehaviour
 {
-    [NonSerialized] public List<Tile> tiles = new();
+    public List<Tile> Tiles {get;set;}= new();
     [NonSerialized] public int size;
 
-    [Inject, NonSerialized] public Tile.Factory tileFactory;
+    [Inject, NonSerialized] public CastleTile.Factory tileFactory;
 
     [NonSerialized] public CmsEnt cmsEnt;
 
@@ -19,23 +19,30 @@ public class BGrid : MonoBehaviour
         
     }
 
+    public virtual void Update()
+    {
+        
+    }
+
     public virtual void Set(CmsEnt cmsEnt)
     {
+        this.cmsEnt = cmsEnt;
         size = cmsEnt.Get<CmsGridSizeComp>().size;
         
-        var floorComp = cmsEnt.Get<CmsFloorPfbComp>();
+        var variations = cmsEnt.Get<CmsFloorVariationsComp>();
 
         for (int i = 0; i < size * size; i++)
         {
             int x = i % size;
             int y = i / size;
 
-            var pfb = i % 2 == 0 ? floorComp.floorA : floorComp.floorB;
+            int tmp = x + y * size + ((size % 2 == 0) ? y % 2 : 0);
+            var variation = tmp % 2 == 0 ? variations.a : variations.b;
 
-            var s = tileFactory.Use(pfb, transform, new(x, y), this);
+            var s = tileFactory.Use(variation, transform, new(x, y), this);
             s.transform.position = GridToWorldPos(new Vector2Int(x, y));
                 
-            tiles.Add(s);
+            Tiles.Add(s);
         }
     }
 
@@ -59,9 +66,9 @@ public class BGrid : MonoBehaviour
     {
         return GeometryUtils.BuildAnchorToWorldPos(GridToWorldPos(gPos), bSize);
     }
-    public Tile GetTileAt(Vector2 pos)
+    public CastleTile GetTileAt(Vector2 pos)
     {
         int id = GridPosToI(WorldToGridPos(pos));
-        return id >= tiles.Count || id < 0 ? null : tiles[id];
+        return id >= Tiles.Count || id < 0 ? null : (CastleTile)Tiles[id];
     }
 }

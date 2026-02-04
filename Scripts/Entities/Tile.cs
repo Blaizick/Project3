@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public BGrid grid;
-    public Vector2Int pos;
-    public Building build;
+    [NonSerialized] public BGrid grid;
+    [NonSerialized] public Vector2Int pos;
+    [NonSerialized] public CmsEnt cmsEnt;
+    public SpriteRenderer floorSpriteRenderer;
+    
+    public virtual void Init()
+    {
+    }
+    public virtual void Update()
+    {
+    }
 
     public class Factory : BaseFactory
     {
@@ -14,14 +22,22 @@ public class Tile : MonoBehaviour
         {
         }
 
-        public Tile Use(Tile a, Transform tr, Vector2Int pos, BGrid grid)
+        public Tile Use(CmsEnt cmsEnt, Transform tr, Vector2Int pos, BGrid grid)
         {
-            var scr = container.Instantiate(a, tr);
+            var scr = container.Instantiate(cmsEnt.Get<CmsTilePfbComp>().pfb, tr);
+            scr.cmsEnt = cmsEnt;
             scr.pos = pos;
             scr.grid = grid;
+            scr.Init();
             return scr;
         }
     }
+}
+
+[Serializable]
+public class CmsTilePfbComp : CmsComp
+{
+    public Tile pfb;
 }
 
 [Serializable]
@@ -36,8 +52,14 @@ public class CmsOffsetComp : CmsComp
 }
 
 [Serializable]
-public class CmsFloorPfbComp : CmsComp
+public class CmsFloorVariationsComp : CmsComp
 {
-    public Tile floorA;
-    public Tile floorB;
+    public CmsEnt a;
+    public CmsEnt b;
+}
+
+[Serializable]
+public class CmsAppearTimeComp : CmsComp
+{
+    public float appearTime;
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
   tag: EnemyCastle1
   comps:
-  - rid: 2352841136075964666
+  - rid: 4751459337172418639
   - rid: 2352841136075964667
   - rid: 2352841136075964668
   - rid: 2352841159246348380
@@ -23,14 +23,11 @@ MonoBehaviour:
   - rid: 2352841254015074377
   - rid: 4751459277286146117
   - rid: 4751459277286146118
+  - rid: 4751459337172418651
+  - rid: 4751459337172418656
   references:
     version: 2
     RefIds:
-    - rid: 2352841136075964666
-      type: {class: CmsFloorPfbComp, ns: , asm: Assembly-CSharp}
-      data:
-        floorA: {fileID: -2556022810697303489, guid: c610ad82215a53740af4e8062896b050, type: 3}
-        floorB: {fileID: 892652266389896989, guid: 4929687a7c58fd247a87ca978d8f8ddf, type: 3}
     - rid: 2352841136075964667
       type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
       data:
@@ -65,3 +62,16 @@ MonoBehaviour:
       data:
         block: {fileID: 11400000, guid: 48aeb90c594f3d64ca2875f3d90cef7f, type: 2}
         pos: {x: 1, y: 1}
+    - rid: 4751459337172418639
+      type: {class: CmsFloorVariationsComp, ns: , asm: Assembly-CSharp}
+      data:
+        a: {fileID: 11400000, guid: ab81440360dc10f49860781fa584ec70, type: 2}
+        b: {fileID: 11400000, guid: 00c10b1c39c8dc24389ba5673b64b850, type: 2}
+    - rid: 4751459337172418651
+      type: {class: CmsAppearTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        appearTime: 1
+    - rid: 4751459337172418656
+      type: {class: CmsDisappearTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        disappearTime: 1

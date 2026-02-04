@@ -2,6 +2,16 @@
 
 public static class MathUtils
 {
+    public static Vector2 DegreesToDirection(float dir)
+    {
+        float rad = dir * Mathf.Deg2Rad;
+        return new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+    }
+    public static Vector2 RotationToDirection(in Quaternion rot)
+    {
+        return DegreesToDirection(rot.eulerAngles.z);
+    }
+
     public static float GetLookAtDegrees(in Vector2 dir)
     {
         return Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -19,7 +29,7 @@ public static class MathUtils
         return GetLookAtRotation(b - a);
     }
 
-    public static Quaternion OffsetRotation(in Quaternion quaternion, float d)
+    public static Quaternion RotateRotation(in Quaternion quaternion, float d)
     {
         return Quaternion.Euler(0, 0, quaternion.eulerAngles.z + d);
     }

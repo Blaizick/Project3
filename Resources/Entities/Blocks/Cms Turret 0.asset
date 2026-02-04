@@ -27,13 +27,14 @@ MonoBehaviour:
   - rid: 2352841204727808076
   - rid: 2352841204727808078
   - rid: 2352841204727808079
+  - rid: 4751459295292555521
   references:
     version: 2
     RefIds:
     - rid: 2352841136075964669
       type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
       data:
-        sprite: {fileID: 5454452688900833447, guid: 764f1f169b3303d41abc6b9b72c8ecf0, type: 3}
+        sprite: {fileID: -595355225, guid: f70ce00e582056849853c2f8b1c5439e, type: 3}
     - rid: 2352841136075964670
       type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
       data:
@@ -41,7 +42,7 @@ MonoBehaviour:
     - rid: 2352841136075964671
       type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
       data:
-        size: 2
+        size: 1
     - rid: 2352841159246348379
       type: {class: CmsProjectileComp, ns: , asm: Assembly-CSharp}
       data:
@@ -57,7 +58,7 @@ MonoBehaviour:
     - rid: 2352841159246348384
       type: {class: CmsDamageComp, ns: , asm: Assembly-CSharp}
       data:
-        damage: 20
+        damage: 10
     - rid: 2352841159246348385
       type: {class: CmsAttackRangeComp, ns: , asm: Assembly-CSharp}
       data:
@@ -84,3 +85,11 @@ MonoBehaviour:
       type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
       data:
         desc: 
+    - rid: 4751459295292555521
+      type: {class: CmsRecoilComp, ns: , asm: Assembly-CSharp}
+      data:
+        streangth: 0.15
+        duration: 0.5
+        vibrato: 0
+        elasticity: 0
+        snapping: 0

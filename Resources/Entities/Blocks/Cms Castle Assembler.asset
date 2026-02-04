@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Castle Assembler
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: CastleAssembler
+  comps:
+  - rid: 2352841136075964669
+  - rid: 2352841136075964670
+  - rid: 2352841136075964671
+  - rid: 2352841159246348383
+  - rid: 2352841189267341388
+  - rid: 2352841204727808076
+  - rid: 2352841204727808078
+  - rid: 2352841204727808079
+  - rid: 2352841223908884566
+  references:
+    version: 2
+    RefIds:
+    - rid: 2352841136075964669
+      type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
+      data:
+        sprite: {fileID: 5454452688900833447, guid: 4b5061c514969644a836812132946149, type: 3}
+    - rid: 2352841136075964670
+      type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 6595871151224210978, guid: 568b185915c91f443bb80f54403eb4f1, type: 3}
+    - rid: 2352841136075964671
+      type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
+      data:
+        size: 3
+    - rid: 2352841159246348383
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 100
+    - rid: 2352841189267341388
+      type: {class: CmsConstructTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        time: 5
+    - rid: 2352841204727808076
+      type: {class: CmsResourceRequirementComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        count: 30
+    - rid: 2352841204727808078
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Castle Assembler
+    - rid: 2352841204727808079
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: 
+    - rid: 2352841223908884566
+      type: {class: CmsRecipeComp, ns: , asm: Assembly-CSharp}
+      data:
+        recipe: {fileID: 11400000, guid: 877f6c9f3d289d945a3633f87b4669be, type: 2}

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Force Field
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: ForceField
+  comps:
+  - rid: 2352841136075964669
+  - rid: 2352841136075964670
+  - rid: 2352841136075964671
+  - rid: 2352841189267341386
+  - rid: 2352841189267341389
+  - rid: 2352841204727808070
+  - rid: 2352841204727808081
+  - rid: 2352841204727808080
+  - rid: 4751459296874070086
+  - rid: 4751459296874070087
+  - rid: 4751459299475587141
+  references:
+    version: 2
+    RefIds:
+    - rid: 2352841136075964669
+      type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
+      data:
+        sprite: {fileID: 40799223, guid: f70ce00e582056849853c2f8b1c5439e, type: 3}
+    - rid: 2352841136075964670
+      type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 6595871151224210978, guid: 1c6d423d7b6efed45ae0b8a279b5c655, type: 3}
+    - rid: 2352841136075964671
+      type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
+      data:
+        size: 2
+    - rid: 2352841189267341386
+      type: {class: CmsResourceRequirementComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        count: 10
+    - rid: 2352841189267341389
+      type: {class: CmsConstructTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        time: 5
+    - rid: 2352841204727808070
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 200
+    - rid: 2352841204727808080
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: Protects your buildings
+    - rid: 2352841204727808081
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Force Field
+    - rid: 4751459296874070086
+      type: {class: CmsForceFieldHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        health: 50
+    - rid: 4751459296874070087
+      type: {class: CmsReloadTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        reloadTime: 1
+    - rid: 4751459299475587141
+      type: {class: CmsForceFieldAppearAnimationDurationComp, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 0.5

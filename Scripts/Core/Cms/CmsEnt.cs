@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using UnityEditor.SearchService;
@@ -15,7 +16,12 @@ public class CmsEnt : ScriptableObject
 
     public CmsComp Get(Type type)
     {
-        return comps.Find(p => type.IsAssignableFrom(p.GetType()));
+        var i = comps.Find(p => type.IsAssignableFrom(p.GetType()));
+        if (i == null)
+        {
+            UnityEngine.Debug.LogError($"No component of type: {type.Name} found on entity with tag: {tag}!");
+        }
+        return i;
     }
     public T Get<T>() where T : CmsComp
     {
@@ -62,10 +68,12 @@ public static class Cms
 
     public static void Init()
     {
+        Stopwatch sw = Stopwatch.StartNew();
+
         entsDic.Clear();
         
         var ents = Resources.LoadAll<CmsEnt>(string.Empty).ToList();
-        StringBuilder sb = new($"Loaded {ents.Count} Entitites: ");
+        StringBuilder sb = new();
         for (int i = 0; i < ents.Count; i++)
         {
             var ent = ents[i];
@@ -79,7 +87,7 @@ public static class Cms
         }
         if (ents.Count > 0)
         {
-            Debug.Log(sb);
+            UnityEngine.Debug.Log($"Loaded {ents.Count} entities in {sw.ElapsedMilliseconds} ms.\n Entities: {sb}");
         }
     }
 

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Unlocks Profile
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: UnlocksProfile
+  comps:
+  - rid: 2352841223908884556
+  - rid: 2352841223908884557
+  - rid: 2352841223908884558
+  - rid: 2352841223908884554
+  - rid: 2352841223908884559
+  - rid: 2352841223908884555
+  - rid: 2352841223908884563
+  - rid: 2352841223908884565
+  - rid: 4751459296874070089
+  references:
+    version: 2
+    RefIds:
+    - rid: 2352841223908884554
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: 51725ac7ff5edfb4381806896037af03, type: 2}
+        unlocked: 1
+    - rid: 2352841223908884555
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: 48aeb90c594f3d64ca2875f3d90cef7f, type: 2}
+        unlocked: 1
+    - rid: 2352841223908884556
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: c17f7dd42e7c90540a807e127d2c3b94, type: 2}
+        unlocked: 1
+    - rid: 2352841223908884557
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: 97cb17b064a237c4e9f21fee24cad4b6, type: 2}
+        unlocked: 0
+    - rid: 2352841223908884558
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: 055d614fe8b70e2478eeb9bbea0e3d05, type: 2}
+        unlocked: 0
+    - rid: 2352841223908884559
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: 2a81e6770b7e3834995d64dbd2bbaeef, type: 2}
+        unlocked: 1
+    - rid: 2352841223908884563
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: 8b700c24c25daa44baf37a0a5d585766, type: 2}
+        unlocked: 1
+    - rid: 2352841223908884565
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: 6f8e7944559c1414f84826103e8b3d93, type: 2}
+        unlocked: 1
+    - rid: 4751459296874070089
+      type: {class: CmsUnlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        unlock: {fileID: 11400000, guid: 47dc16afde39a2d4b806091215939eae, type: 2}
+        unlocked: 1

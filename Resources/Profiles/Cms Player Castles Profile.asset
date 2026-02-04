@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Player Castles Profile
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: PlayerCastlesProfile
+  comps:
+  - rid: 2352841247353208900
+  - rid: 2352841254015074372
+  - rid: 2352841254015074373
+  references:
+    version: 2
+    RefIds:
+    - rid: 2352841247353208900
+      type: {class: CmsGridPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        gridPfb: {fileID: 4942343588626185109, guid: 856da81ccc7c2b34f831969f645ca207, type: 3}
+    - rid: 2352841254015074372
+      type: {class: CmsMaxCastlesComp, ns: , asm: Assembly-CSharp}
+      data:
+        max: 5
+    - rid: 2352841254015074373
+      type: {class: CmsMaxCastlesStoredComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxStored: 3

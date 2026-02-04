@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Capture Point 0
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: CapturePoint0
+  comps:
+  - rid: 4751459318738976847
+  - rid: 4751459318738976849
+  - rid: 4751459318738976850
+  - rid: 4751459318738976851
+  - rid: 4751459337172418629
+  - rid: 4751459337172418630
+  references:
+    version: 2
+    RefIds:
+    - rid: 4751459318738976847
+      type: {class: CmsCapturePointPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 5643774423445932402, guid: 822537aec4b12b74e96c9e3534c83617, type: 3}
+    - rid: 4751459318738976849
+      type: {class: CmsCaptureTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        captureTime: 5
+    - rid: 4751459318738976850
+      type: {class: CmsResourceStackComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        count: 50
+    - rid: 4751459318738976851
+      type: {class: CmsResourceStackComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: ccdb958a83eef0643b470feb714e719b, type: 2}
+        count: 10
+    - rid: 4751459337172418629
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Capture Point
+    - rid: 4751459337172418630
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: You can capture this with your castle and optain resources

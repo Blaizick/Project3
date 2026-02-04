@@ -15,6 +15,7 @@ MonoBehaviour:
   tag: AllyTeam
   comps:
   - rid: 2352841159246348356
+  - rid: 4751459269921734725
   references:
     version: 2
     RefIds:
@@ -22,3 +23,7 @@ MonoBehaviour:
       type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
       data:
         name: Ally
+    - rid: 4751459269921734725
+      type: {class: CmsEnemyTeamComp, ns: , asm: Assembly-CSharp}
+      data:
+        enemyTeam: {fileID: 11400000, guid: 6cf0e4058d1a8e544b6f963420e110ea, type: 2}

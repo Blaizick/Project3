@@ -17,13 +17,15 @@ MonoBehaviour:
   - rid: 2352841159246348376
   - rid: 2352841159246348377
   - rid: 2352841159246348378
+  - rid: 2352841223908884550
+  - rid: 2352841223908884552
   references:
     version: 2
     RefIds:
     - rid: 2352841159246348376
       type: {class: CmsProjectilePfbComp, ns: , asm: Assembly-CSharp}
       data:
-        pfb: {fileID: 3076226723719917638, guid: 40e3f18fe90615646a085b9078de9cb4, type: 3}
+        pfb: {fileID: 1995342308020390954, guid: 40e3f18fe90615646a085b9078de9cb4, type: 3}
     - rid: 2352841159246348377
       type: {class: CmsDamageComp, ns: , asm: Assembly-CSharp}
       data:
@@ -32,3 +34,11 @@ MonoBehaviour:
       type: {class: CmsMoveSpeedComp, ns: , asm: Assembly-CSharp}
       data:
         moveSpeed: 12
+    - rid: 2352841223908884550
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 20
+    - rid: 2352841223908884552
+      type: {class: CmsLifetimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        lifetime: 8

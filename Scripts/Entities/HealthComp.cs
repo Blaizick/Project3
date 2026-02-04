@@ -11,6 +11,8 @@ public interface IHealthComp
 
 public class HealthComp : MonoBehaviour, IHealthComp
 {
+    public float FillAmount => health / maxHealth;
+
     public float health;
     public float maxHealth;
 
@@ -20,6 +22,10 @@ public class HealthComp : MonoBehaviour, IHealthComp
 
     public bool canDamage = true;
 
+    public void Set(float health)
+    {
+        maxHealth = health;
+    }
     public void Set(CmsEnt cmsEnt)
     {
         maxHealth = cmsEnt.Get<CmsHealthComp>().maxHealth;

@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class Player
 {
-    [Inject] public Castle.Factory castleFactory;
-    public Castle castle;
+    public Team team;
+    [Inject] public CastlesSystem castles;
 
     public void Init()
     {
-        castle = castleFactory.Use(Cms.Get("PlayerCastle0"), Teams.ally);
+        team = Teams.ally;
+        castles.ForTeam(team).SpawnUnchecked(Vector2.zero, Castles.playerCastle0);
     }
 
     public void Update()

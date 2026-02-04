@@ -20,6 +20,8 @@ MonoBehaviour:
   - rid: 2352841159246348381
   - rid: 2352841204727808074
   - rid: 2352841204727808077
+  - rid: 2352841254015074375
+  - rid: 2352841254015074376
   references:
     version: 2
     RefIds:
@@ -48,3 +50,11 @@ MonoBehaviour:
       type: {class: CmsRecipeComp, ns: , asm: Assembly-CSharp}
       data:
         recipe: {fileID: 11400000, guid: 0020baf0aa4308b4ba76f0170f235cd8, type: 2}
+    - rid: 2352841254015074375
+      type: {class: CmsAgreRangeComp, ns: , asm: Assembly-CSharp}
+      data:
+        range: 30
+    - rid: 2352841254015074376
+      type: {class: CmsMoveSpeedComp, ns: , asm: Assembly-CSharp}
+      data:
+        moveSpeed: 4

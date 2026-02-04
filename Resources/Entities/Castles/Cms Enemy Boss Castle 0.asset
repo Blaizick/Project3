@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Enemy Boss Castle 0
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: EnemyBossCastle0
+  comps:
+  - rid: 2352841136075964666
+  - rid: 2352841136075964667
+  - rid: 2352841136075964668
+  - rid: 2352841159246348380
+  - rid: 2352841204727808072
+  - rid: 2352841254015074374
+  - rid: 2352841254015074377
+  - rid: 4751459277286146117
+  - rid: 4751459277286146118
+  references:
+    version: 2
+    RefIds:
+    - rid: 2352841136075964666
+      type: {class: CmsFloorPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        floorA: {fileID: -2556022810697303489, guid: c610ad82215a53740af4e8062896b050, type: 3}
+        floorB: {fileID: 892652266389896989, guid: 4929687a7c58fd247a87ca978d8f8ddf, type: 3}
+    - rid: 2352841136075964667
+      type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
+      data:
+        size: 5
+    - rid: 2352841136075964668
+      type: {class: CmsOffsetComp, ns: , asm: Assembly-CSharp}
+      data:
+        offset: {x: 0, y: 0}
+    - rid: 2352841159246348380
+      type: {class: CmsCastlePfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 5361526335954984728, guid: 62c0734f313d44342afe4239908f12d3, type: 3}
+    - rid: 2352841204727808072
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 100
+    - rid: 2352841254015074374
+      type: {class: CmsAgreRangeComp, ns: , asm: Assembly-CSharp}
+      data:
+        range: 30
+    - rid: 2352841254015074377
+      type: {class: CmsMoveSpeedComp, ns: , asm: Assembly-CSharp}
+      data:
+        moveSpeed: 2
+    - rid: 4751459277286146117
+      type: {class: CmsCastlePlaceBlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        block: {fileID: 11400000, guid: c17f7dd42e7c90540a807e127d2c3b94, type: 2}
+        pos: {x: 0, y: 0}
+    - rid: 4751459277286146118
+      type: {class: CmsCastlePlaceBlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        block: {fileID: 11400000, guid: 48aeb90c594f3d64ca2875f3d90cef7f, type: 2}
+        pos: {x: 1, y: 1}

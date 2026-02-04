@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Turret 1
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: Turret2
+  comps:
+  - rid: 2352841136075964669
+  - rid: 2352841136075964670
+  - rid: 2352841136075964671
+  - rid: 2352841159246348379
+  - rid: 2352841159246348382
+  - rid: 2352841159246348383
+  - rid: 2352841159246348384
+  - rid: 2352841159246348385
+  - rid: 2352841159246348386
+  - rid: 2352841189267341388
+  - rid: 2352841204727808076
+  - rid: 2352841204727808078
+  - rid: 2352841204727808079
+  - rid: 4751459296874070016
+  references:
+    version: 2
+    RefIds:
+    - rid: 2352841136075964669
+      type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
+      data:
+        sprite: {fileID: 131112103, guid: f70ce00e582056849853c2f8b1c5439e, type: 3}
+    - rid: 2352841136075964670
+      type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 6595871151224210978, guid: 70822b66ab5d9de46aa60919196b2c42, type: 3}
+    - rid: 2352841136075964671
+      type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
+      data:
+        size: 2
+    - rid: 2352841159246348379
+      type: {class: CmsProjectileComp, ns: , asm: Assembly-CSharp}
+      data:
+        proj: {fileID: 11400000, guid: 78bf6c5cc8fb07946812e3a24a74cdda, type: 2}
+    - rid: 2352841159246348382
+      type: {class: CmsReloadTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        reloadTime: 1
+    - rid: 2352841159246348383
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 100
+    - rid: 2352841159246348384
+      type: {class: CmsDamageComp, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 20
+    - rid: 2352841159246348385
+      type: {class: CmsAttackRangeComp, ns: , asm: Assembly-CSharp}
+      data:
+        attackRange: 10
+    - rid: 2352841159246348386
+      type: {class: CmsRotationComp, ns: , asm: Assembly-CSharp}
+      data:
+        offset: -90
+        rotationSpeed: 180
+    - rid: 2352841189267341388
+      type: {class: CmsConstructTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        time: 5
+    - rid: 2352841204727808076
+      type: {class: CmsResourceRequirementComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        count: 15
+    - rid: 2352841204727808078
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Laser Turret
+    - rid: 2352841204727808079
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: 
+    - rid: 4751459296874070016
+      type: {class: CmsRecoilComp, ns: , asm: Assembly-CSharp}
+      data:
+        streangth: 0.5
+        duration: 0.2
+        vibrato: 0
+        elasticity: 0
+        snapping: 0

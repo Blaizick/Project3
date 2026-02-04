@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Quintessence Collector
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: QuintessenceCollector
+  comps:
+  - rid: 2352841136075964669
+  - rid: 2352841136075964670
+  - rid: 2352841136075964671
+  - rid: 2352841189267341383
+  - rid: 2352841189267341386
+  - rid: 2352841189267341389
+  - rid: 2352841204727808075
+  - rid: 2352841204727808082
+  - rid: 2352841204727808083
+  references:
+    version: 2
+    RefIds:
+    - rid: 2352841136075964669
+      type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
+      data:
+        sprite: {fileID: -1454941038, guid: f70ce00e582056849853c2f8b1c5439e, type: 3}
+    - rid: 2352841136075964670
+      type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 6595871151224210978, guid: e8923157eebed074ab0c05a56440e2f5, type: 3}
+    - rid: 2352841136075964671
+      type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
+      data:
+        size: 2
+    - rid: 2352841189267341383
+      type: {class: CmsRecipeComp, ns: , asm: Assembly-CSharp}
+      data:
+        recipe: {fileID: 11400000, guid: 9e7317ae479d619478af962391e7e395, type: 2}
+    - rid: 2352841189267341386
+      type: {class: CmsResourceRequirementComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        count: 20
+    - rid: 2352841189267341389
+      type: {class: CmsConstructTimeComp, ns: , asm: Assembly-CSharp}
+      data:
+        time: 5
+    - rid: 2352841204727808075
+      type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxHealth: 100
+    - rid: 2352841204727808082
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Quintessence Collector
+    - rid: 2352841204727808083
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: Collects quintessence flying in air.

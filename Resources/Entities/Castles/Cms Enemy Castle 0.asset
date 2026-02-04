@@ -19,6 +19,10 @@ MonoBehaviour:
   - rid: 2352841136075964668
   - rid: 2352841159246348380
   - rid: 2352841204727808072
+  - rid: 2352841254015074374
+  - rid: 2352841254015074377
+  - rid: 4751459277286146117
+  - rid: 4751459277286146118
   references:
     version: 2
     RefIds:
@@ -30,7 +34,7 @@ MonoBehaviour:
     - rid: 2352841136075964667
       type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
       data:
-        size: 9
+        size: 3
     - rid: 2352841136075964668
       type: {class: CmsOffsetComp, ns: , asm: Assembly-CSharp}
       data:
@@ -42,4 +46,22 @@ MonoBehaviour:
     - rid: 2352841204727808072
       type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
       data:
-        maxHealth: 100
+        maxHealth: 200
+    - rid: 2352841254015074374
+      type: {class: CmsAgreRangeComp, ns: , asm: Assembly-CSharp}
+      data:
+        range: 30
+    - rid: 2352841254015074377
+      type: {class: CmsMoveSpeedComp, ns: , asm: Assembly-CSharp}
+      data:
+        moveSpeed: 2
+    - rid: 4751459277286146117
+      type: {class: CmsCastlePlaceBlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        block: {fileID: 11400000, guid: c17f7dd42e7c90540a807e127d2c3b94, type: 2}
+        pos: {x: 0, y: 0}
+    - rid: 4751459277286146118
+      type: {class: CmsCastlePlaceBlockComp, ns: , asm: Assembly-CSharp}
+      data:
+        block: {fileID: 11400000, guid: c17f7dd42e7c90540a807e127d2c3b94, type: 2}
+        pos: {x: 2, y: 2}

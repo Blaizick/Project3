@@ -4,51 +4,33 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public CmsEnt cmsEnt;
+    [NonSerialized] public CmsEnt cmsEnt;
     public Rigidbody2D rb;
     public TeamComp teamComp;
 
-    public Vector2 target;
+    [NonSerialized] public Vector2 targetPos;
 
-    public CmsMoveSpeedComp moveSpeedComp;
-
-    public void Init()
+    public virtual void Init()
     {
-        moveSpeedComp = cmsEnt.Get<CmsMoveSpeedComp>();
+        Destroy(gameObject, cmsEnt.Get<CmsLifetimeComp>().lifetime);
     }
 
-    public void Update()
+    public virtual void Update()
     {
-        if (MathUtils.IsWithin(transform.position, target))
-        {
-            Destroy(gameObject);
-        }
-        rb.linearVelocity = (target - (Vector2)transform.position).normalized * moveSpeedComp.moveSpeed;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<IHealthComp>(out var h) && 
-            collision.TryGetComponent<TeamComp>(out var t) && 
-            t.team.IsEnemy(teamComp.team) &&
-            h.CanDamage)
-        {
-            h.TakeDamage(cmsEnt.Get<CmsDamageComp>().damage);
-            Destroy(gameObject);
-        }
     }
 
     public class Factory : BaseFactory
     {
-        public Factory(Container container) : base(container) {}
+        public Factory(DiContainer container) : base(container) {}
 
-        public Projectile Use(CmsEnt cmsEnt, Team team, Vector2 origin, Vector2 target)
+        public Projectile Use(CmsEnt cmsEnt, Team team, Vector2 origin, Vector2 target, Quaternion rot)
         {
             var scr = container.Instantiate(cmsEnt.Get<CmsProjectilePfbComp>().pfb);
             scr.transform.position = origin;
+            scr.transform.rotation = rot;
             scr.cmsEnt = cmsEnt;
             scr.teamComp.team = team;
-            scr.target = target;
+            scr.targetPos = target;
             scr.Init();
             return scr;
         }

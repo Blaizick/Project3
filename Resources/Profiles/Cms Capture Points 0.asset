@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Capture Points 0
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: CapturePoints0
+  comps:
+  - rid: 4751459318738976846
+  - rid: 4751459318738976852
+  references:
+    version: 2
+    RefIds:
+    - rid: 4751459318738976846
+      type: {class: CmsSpawnCapturePointComp, ns: , asm: Assembly-CSharp}
+      data:
+        count: 10
+        capturePoint: {fileID: 11400000, guid: 7d07a7aaade640f42a5c16c02ffd3327, type: 2}
+    - rid: 4751459318738976852
+      type: {class: CmsTeamComp, ns: , asm: Assembly-CSharp}
+      data:
+        team: {fileID: 11400000, guid: 6ae8c1396a9e6e3459c6657c6fe74160, type: 2}

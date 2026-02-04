@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Unity.VisualScripting;
@@ -9,67 +10,74 @@ namespace BJect
 {
     public class Resolver : MonoBehaviour
     {
-        public Container Container {get;set;}
+        public DiContainer Container {get;set;}
 
         public void Init()
         {
+            Stopwatch sw = Stopwatch.StartNew();
+
             Container = new();
-            Container.Bind<Container>().FromInstance(Container).AsSingle();
+            Container.Bind<DiContainer>().FromInstance(Container).AsSingle();
 
             Resolve();
 
-            foreach (var o in GameObject.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
+            foreach (var o in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
             {
-                Container.ResolveFields(o);
-                Container.ResolveMethods(o);
+                Container.InjectFields(o);
+                Container.InjectMethods(o);
             } 
+
+            UnityEngine.Debug.Log($"Resolved {Container.resolveCounter} dependencies in {sw.ElapsedMilliseconds} ms.");
         }
 
         public virtual void Resolve()
         {
-
+            
         }
     }
 
-    public class Container
+    public class DiContainer
     {
+        public Dictionary<BindSignature, List<object>> neededDic = new();
         public Dictionary<BindSignature, object> dic = new();
 
-    // public T Resolve<T>()
-    // {
-    //     return (T)dic[new(){type = typeof(T)}];
-    // }
-    // public bool TryResolve(Type type, out object obj)
-    // {
-    //     if (!dic.TryGetValue(new(){type = type}, out obj))
-    //     {
-    //         Debug.LogError($"Instance of type {type.Name} not found!");
-    //         obj = null;
-    //         return false;
-    //     }
-    //     return true;
-    // }
-    // public bool TryResolve<T>(out T obj) where T : class
-    // {
-    //     if (!TryResolve(typeof(T), out var o))
-    //     {
-    //         obj = null;
-    //         return false;
-    //     }
-    //     obj = (T)o;
-    //     return true;
-    // }
+        public int resolveCounter = 0;
+
+        public T Resolve<T>()
+        {
+            return (T)dic[new(typeof(T))];
+        }
+        public bool TryResolve(Type type, out object obj)
+        {
+            if (!dic.TryGetValue(new(){type = type}, out obj))
+            {
+                UnityEngine.Debug.LogError($"Instance of type {type.Name} not found!");
+                obj = null;
+                return false;
+            }
+            return true;
+        }
+        public bool TryResolve<T>(out T obj) where T : class
+        {
+            if (!TryResolve(typeof(T), out var o))
+            {
+                obj = null;
+                return false;
+            }
+            obj = (T)o;
+            return true;
+        }
 
         public BindSignatureBuilder Bind<T>() where T : class
         {
             return new(this, typeof(T));
         }
 
-        public object CreateInstance(BindSignature signature)
+        public object CreateInstance(BindSignature signature, List<object> data = null)
         {
-            return CreateInstance(signature.type);
+            return CreateInstance(signature.type, data);
         }
-        public object CreateInstance(Type type)
+        public object CreateInstance(Type type, List<object> data = null)
         {
             var constructors = type.GetConstructors().OrderBy(c => c.GetParameters().Count());
         
@@ -87,27 +95,48 @@ namespace BJect
                     object obj;
                     if (!dic.TryGetValue(parameterSignature, out obj))
                     {
-                        success = false;
-                        break;
+                        if (data == null)
+                        {
+                            success = false;
+                            break;
+                        }
+                        int id = data.FindIndex(i => p.ParameterType.IsAssignableFrom(i.GetType()));
+                        if (id < 0)
+                        {
+                            success = false;
+                            break;
+                        }
+                        obj = data[id];
                     }
                     args.Add(obj);
                 }    
                 if (success)
                 {
+                    resolveCounter++;
                     return Activator.CreateInstance(type, args.ToArray());
                 }
             }
-            Debug.LogError($"Couldn't find a constructor for {type.Name}!");
+            UnityEngine.Debug.LogError($"Couldn't find a constructor for {type.Name}!");
             return null;
         }
         public void Register(BindSignature signature, object obj)
         {
-            ResolveFields(obj);
-            ResolveMethods(obj);
+            InjectFields(obj);
+            InjectMethods(obj);
+            
             dic[signature] = obj;
+            
+            if (neededDic.TryGetValue(signature, out var l))
+            {
+                foreach (var o in l)
+                {
+                    InjectFields(o);
+                }
+                neededDic.Remove(signature);
+            }
         }
 
-        public void ResolveFields(object obj, List<object> data = null)
+        public void InjectFields(object obj, List<object> data = null)
         {
             if (obj == null)
             {
@@ -126,20 +155,36 @@ namespace BJect
                 {
                     if (data == null)
                     {
+                        AddNeeded(fieldSignature, obj);
                         continue;
                     }
                     int id = data.FindIndex(i => i.GetType() == f.FieldType);
                     if (id < 0)
                     {
+                        AddNeeded(fieldSignature, obj);
                         continue;
                     }
                     o = data[id];
                 }
+                resolveCounter++;
                 f.SetValue(obj, o);
             }
         }
 
-        public void ResolveMethods(object obj, List<object> data = null)
+        private void AddNeeded(BindSignature signature, object obj)
+        {
+            List<object> l;
+            if (!neededDic.TryGetValue(signature, out l))
+            {
+                l = new();
+                neededDic[signature] = l;
+            }
+            if (!l.Contains(obj))
+            {
+                l.Add(obj);
+            }
+        }
+        public void InjectMethods(object obj, List<object> data = null)
         {
             if (obj == null)
             {
@@ -187,8 +232,9 @@ namespace BJect
 
                 if (success)
                 {
+                    resolveCounter++;
                     method.Invoke(obj, args.ToArray());
-                    break;
+                    return;;
                 }
             }
         }
@@ -198,8 +244,8 @@ namespace BJect
             var go = GameObject.Instantiate(pfb, root);
             foreach (var m in go.GetComponents<MonoBehaviour>())
             {
-                ResolveFields(m, data);
-                ResolveMethods(m, data);
+                InjectFields(m, data);
+                InjectMethods(m, data);
             }
             return go;
         }
@@ -208,8 +254,8 @@ namespace BJect
             var scr = GameObject.Instantiate<T>(pfb, root);
             foreach (var m in scr.GetComponents<MonoBehaviour>())
             {
-                ResolveFields(m, data);
-                ResolveMethods(m, data);
+                InjectFields(m, data);
+                InjectMethods(m, data);
             }
             return scr;
         }
@@ -219,15 +265,15 @@ namespace BJect
             return Instantiate(pfb, root, data).GetComponent<T>();
         }
 
-        public T Create<T>()
+        public T Create<T>(List<object> data = null)
         {
-            return (T)Create(typeof(T));
+            return (T)Create(typeof(T), data);
         }
-        public object Create(Type type)
+        public object Create(Type type, List<object> data)
         {
-            var obj = CreateInstance(type);
-            ResolveFields(obj);
-            ResolveMethods(obj);
+            var obj = CreateInstance(type, data);
+            InjectFields(obj, data);
+            InjectMethods(obj, data);
             return obj;
         }
     }
@@ -235,17 +281,17 @@ namespace BJect
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Method | AttributeTargets.Parameter)]
     public class InjectAttribute : Attribute
     {
-        public string Tag {get;set;} = null;
+        public string Tag {get;set;} = default;
     }
 
     public class BindSignatureBuilder
     {
-        public Container container;
+        public DiContainer container;
         public BindSignature signature;
 
         public object obj;
 
-        public BindSignatureBuilder(Container container, Type type)
+        public BindSignatureBuilder(DiContainer container, Type type)
         {
             this.container = container;
             signature = new()
@@ -290,9 +336,9 @@ namespace BJect
 
     public class BaseFactory
     {
-        public Container container;
+        public DiContainer container;
 
-        public BaseFactory(Container container)
+        public BaseFactory(DiContainer container)
         {
             this.container = container;
         }
@@ -302,7 +348,7 @@ namespace BJect
     {
         public T pfb;
 
-        public TemplateGameObjectFactory(Container container, T pfb) : base(container)
+        public TemplateGameObjectFactory(DiContainer container, T pfb) : base(container)
         {
             this.pfb = pfb;
         }
@@ -314,7 +360,7 @@ namespace BJect
     }
     public class TemplateGameObjectFactory : TemplateGameObjectFactory<UnityEngine.Object>
     {
-        public TemplateGameObjectFactory(Container container, UnityEngine.Object pfb) : base(container, pfb)
+        public TemplateGameObjectFactory(DiContainer container, UnityEngine.Object pfb) : base(container, pfb)
         {
         }
     }

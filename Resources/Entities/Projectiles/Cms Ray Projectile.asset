@@ -20,6 +20,9 @@ MonoBehaviour:
   - rid: 2352841223908884548
   - rid: 2352841223908884549
   - rid: 2352841223908884551
+  - rid: 4751459355267956807
+  - rid: 4751459355267956812
+  - rid: 4751459355267956813
   references:
     version: 2
     RefIds:
@@ -47,3 +50,16 @@ MonoBehaviour:
       type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
       data:
         maxHealth: 20
+    - rid: 4751459355267956807
+      type: {class: CmsAmmoResourceComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: ccdb958a83eef0643b470feb714e719b, type: 2}
+        ammoCount: 4
+    - rid: 4751459355267956812
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Ray Projectile
+    - rid: 4751459355267956813
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: 

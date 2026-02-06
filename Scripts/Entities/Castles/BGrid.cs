@@ -14,7 +14,7 @@ public class BGrid : MonoBehaviour
 
     [Inject, NonSerialized] public DiContainer container;
 
-    public void Init()
+    public virtual void Init()
     {
         
     }

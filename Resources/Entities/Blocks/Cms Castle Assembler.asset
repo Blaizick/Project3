@@ -29,7 +29,7 @@ MonoBehaviour:
     - rid: 2352841136075964669
       type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
       data:
-        sprite: {fileID: 5454452688900833447, guid: 4b5061c514969644a836812132946149, type: 3}
+        sprite: {fileID: 2083564261, guid: f70ce00e582056849853c2f8b1c5439e, type: 3}
     - rid: 2352841136075964670
       type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
       data:

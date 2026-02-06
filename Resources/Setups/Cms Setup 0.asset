@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
+  m_Name: Cms Setup 0
+  m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
+  tag: Setup0
+  comps:
+  - rid: 4751459355267957011
+  - rid: 4751459377366696018
+  - rid: 4751459377366696019
+  - rid: 4751459377366696020
+  - rid: 4751459377366696021
+  references:
+    version: 2
+    RefIds:
+    - rid: 4751459355267957011
+      type: {class: CmsStartResourceStackComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        count: 50
+    - rid: 4751459377366696018
+      type: {class: CmsMaxCastlesForTeamComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxCastles: 3
+        team: {fileID: 11400000, guid: 6ae8c1396a9e6e3459c6657c6fe74160, type: 2}
+    - rid: 4751459377366696019
+      type: {class: CmsMaxCastlesStoredForTeamComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxCastlesStored: 3
+        team: {fileID: 11400000, guid: 6ae8c1396a9e6e3459c6657c6fe74160, type: 2}
+    - rid: 4751459377366696020
+      type: {class: CmsMaxCastlesForTeamComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxCastles: 3
+        team: {fileID: 11400000, guid: 6cf0e4058d1a8e544b6f963420e110ea, type: 2}
+    - rid: 4751459377366696021
+      type: {class: CmsMaxCastlesStoredForTeamComp, ns: , asm: Assembly-CSharp}
+      data:
+        maxCastlesStored: 3
+        team: {fileID: 11400000, guid: 6cf0e4058d1a8e544b6f963420e110ea, type: 2}

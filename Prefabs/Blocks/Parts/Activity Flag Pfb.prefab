@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 989853570801597412}
   - component: {fileID: 2676393730461647988}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6805245117218422594}
   - component: {fileID: 4457729519472063713}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6590118427785494846}
   - component: {fileID: 7294028232654850805}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Activity Flag Pfb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6282390231573652710}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Idle State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3607218825455849833}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Busy State
   m_TagString: Untagged
   m_Icon: {fileID: 0}

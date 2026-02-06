@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using BJect;
 using JetBrains.Annotations;
+using Mono.Cecil;
 using UnityEngine;
 
 [Serializable]
@@ -85,7 +88,7 @@ public class CraftingBuilding : Building
 
     public override void Init()
     {
-        craftSystem = container.Create<CraftSystem>();
+        craftSystem = container.Create<CraftSystem>(new(){teamComp.team});
         craftSystem.recipe = cmsEnt.Get<CmsRecipeComp>().recipe;
 
         base.Init();
@@ -97,6 +100,15 @@ public class CraftingBuilding : Building
         busy = craftSystem.crafting;
 
         base.Update();
+    }
+
+    public override string Desc
+    {
+        get
+        {
+            StringBuilder sb = new(base.Desc);
+            return sb.ToString();
+        }
     }
 }
 
@@ -110,13 +122,20 @@ public class CraftSystem
     public bool crafting;
     public float craftProgress;
 
-    public CraftSystem(ResourcesSystem resources)
+    public Team team;
+
+    public CraftSystem(ResourcesSystem resources, Team team)
     {
         this.resources = resources;
+        this.team = team;
     }
 
     public void Update()
     {
+        if (resources.ForTeam(team).InfinityResources)
+        {
+            return;
+        }
         if (crafting)
         {
             craftProgress += Time.deltaTime / recipe.Get<CmsCraftTimeComp>().time;
@@ -124,7 +143,7 @@ public class CraftSystem
             {
                 foreach (var output in recipe.GetAll<CmsOutComp>())
                 {
-                    resources.Add(output.AsStack());
+                    resources.ForTeam(team).Add(output.AsStack());
                 }
                 crafting = false;
             }
@@ -135,7 +154,7 @@ public class CraftSystem
             crafting = true;
             foreach (var input in recipe.GetAll<CmsInComp>())
             {
-                if (!resources.Has(input.AsStack()))
+                if (!resources.ForTeam(team).Has(input.AsStack()))
                 {
                     crafting = false;
                     break;
@@ -145,7 +164,7 @@ public class CraftSystem
             {
                 foreach (var i in recipe.GetAll<CmsInComp>())
                 {
-                    resources.Remove(i.AsStack());
+                    resources.ForTeam(team).Remove(i.AsStack());
                 }
             }
         }

@@ -1,6 +1,32 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using BJect;
 using UnityEngine;
+
+public static class ProjectileUtils
+{
+    public static string GetProjDesc(CmsEnt proj)
+    {
+        StringBuilder sb = new();
+        sb.AppendLine($"Name: {proj.Get<CmsNameComp>().name}");
+        sb.AppendLine($"Description: {proj.Get<CmsDescComp>().desc}");
+        sb.AppendLine($"Count: {proj.Get<CmsAmmoResourceComp>().ammoCount} for 1 {proj.Get<CmsAmmoResourceComp>().resource.Get<CmsNameComp>().name}");
+        sb.AppendLine($"Damage: {proj.Get<CmsDamageComp>().damage}");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Sorts projectiles descendent by damage
+    /// </summary>
+    /// <param name="projectiles"></param>
+    /// <returns></returns>
+    public static List<CmsEnt> SortProjectiles(List<CmsEnt> projectiles)
+    {
+        return projectiles.OrderBy(i => -i.Get<CmsDamageComp>().damage).ToList();
+    }
+}
 
 public class Projectile : MonoBehaviour
 {

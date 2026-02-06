@@ -19,6 +19,9 @@ MonoBehaviour:
   - rid: 2352841223908884549
   - rid: 2352841223908884551
   - rid: 2352841223908884553
+  - rid: 4751459355267956806
+  - rid: 4751459355267956810
+  - rid: 4751459355267956811
   references:
     version: 2
     RefIds:
@@ -42,3 +45,16 @@ MonoBehaviour:
       type: {class: CmsDstComp, ns: , asm: Assembly-CSharp}
       data:
         dst: 5
+    - rid: 4751459355267956806
+      type: {class: CmsAmmoResourceComp, ns: , asm: Assembly-CSharp}
+      data:
+        resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
+        ammoCount: 1
+    - rid: 4751459355267956810
+      type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
+      data:
+        name: Laser Projectile
+    - rid: 4751459355267956811
+      type: {class: CmsDescComp, ns: , asm: Assembly-CSharp}
+      data:
+        desc: 

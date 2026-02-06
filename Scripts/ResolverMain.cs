@@ -1,4 +1,5 @@
 using BJect;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public static class InjectTags
@@ -17,13 +18,14 @@ public class ResolverMain : Resolver
     public EntitiesControlUi entitiesControlMenu;
     public LayerMasks layerMasks;
     public MapSystem map;
+    public CinemachineCamera mainCamera;
 
     public override void Resolve()
     {
-        Container.Bind<CastleTile.Factory>().AsSingle();
+        Container.Bind<Tile.Factory>().AsSingle();
         Container.Bind<Projectile.Factory>().AsSingle();
-        Container.Bind<Castle.Factory>().AsSingle();
 
+        Container.Bind<CinemachineCamera>().FromInstance(mainCamera).AsSingle();
         Container.Bind<LayerMasks>().FromInstance(layerMasks).AsSingle();
         Container.Bind<MapSystem>().FromInstance(map).AsSingle();
         Container.Bind<ResourcesSystem>().AsSingle();
@@ -34,6 +36,7 @@ public class ResolverMain : Resolver
         Container.Bind<UnlocksSystem>().AsSingle();
         Container.Bind<CapturePointSystem>().AsSingle();
         Container.Bind<CastleDisappearSystem>().AsSingle();
+        Container.Bind<FogOfWarSystem>().AsSingle();
 
         Container.Bind<BlocksUi>().FromInstance(blocksUi).AsSingle();
         Container.Bind<BlockTooltipUi>().FromInstance(blockTooltipUi).AsSingle();

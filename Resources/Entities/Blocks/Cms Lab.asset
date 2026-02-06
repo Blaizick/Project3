@@ -30,7 +30,7 @@ MonoBehaviour:
     - rid: 2352841136075964669
       type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
       data:
-        sprite: {fileID: 5454452688900833447, guid: 4b5061c514969644a836812132946149, type: 3}
+        sprite: {fileID: 1005931857, guid: f70ce00e582056849853c2f8b1c5439e, type: 3}
     - rid: 2352841136075964670
       type: {class: CmsPfbComp, ns: , asm: Assembly-CSharp}
       data:
@@ -38,7 +38,7 @@ MonoBehaviour:
     - rid: 2352841136075964671
       type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
       data:
-        size: 3
+        size: 2
     - rid: 2352841159246348383
       type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
       data:
@@ -47,7 +47,7 @@ MonoBehaviour:
       type: {class: CmsResourceRequirementComp, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
-        count: 15
+        count: 100
     - rid: 2352841204727808078
       type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
       data:
@@ -67,4 +67,4 @@ MonoBehaviour:
     - rid: 2352841223908884564
       type: {class: CmsConstructTimeComp, ns: , asm: Assembly-CSharp}
       data:
-        time: 5
+        time: 15

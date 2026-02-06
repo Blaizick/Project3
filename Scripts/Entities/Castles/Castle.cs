@@ -25,8 +25,6 @@ public class Castle : MonoBehaviour
     [NonSerialized] public bool controlling; 
     [NonSerialized] public bool controllingCastles;
 
-    [NonSerialized] public float appearProgress;
-
     [NonSerialized, Inject] public CastleDisappearSystem castleDisappearSystem;
 
     public void SetMovePos(Vector2 pos)
@@ -51,16 +49,16 @@ public class Castle : MonoBehaviour
         {
             controlFrameRoot.SetActive(false);
         }
+
+        foreach (var tile in grid.Tiles)
+        {
+            ((CastleTile)tile).baseState.root.SetActive(true);
+            ((CastleTile)tile).constructState.root.SetActive(false);
+        }
     }
 
     public virtual void Update()
     {
-        appearProgress += Time.deltaTime / cmsEnt.Get<CmsAppearTimeComp>().appearTime;
-        foreach (var tile in grid.Tiles)
-        {
-            ((CastleTile)tile).appearProgress = appearProgress;
-        }
-
         if (moving)
         {
             if (MathUtils.IsWithin(transform.position, movePos, 0.05f))
@@ -95,37 +93,6 @@ public class Castle : MonoBehaviour
         if (controlFrameRoot)
         {
             controlFrameRoot.SetActive(controllingCastles && controlling);
-        }
-    }
-
-    public class Factory : BaseFactory
-    {
-        public Factory(DiContainer container) : base(container)
-        {
-        }
-
-        public Castle Use(Vector2 pos, CmsEnt cmsEnt, Team team)
-        {
-            var scr = container.Instantiate(cmsEnt.Get<CmsCastlePfbComp>().pfb);
-            scr.cmsEnt = cmsEnt;
-            scr.teamComp.team = team;
-
-            scr.transform.position = pos;
-
-            scr.grid.Set(cmsEnt, scr);
-
-            var shadow = container.Instantiate(Profiles.basePrefabs.Get<CmsShadowPfbComp>().shadowPfb, scr.transform);
-            shadow.transform.localScale = new Vector3(scr.grid.size, scr.grid.size, 1.0f);
-            shadow.transform.position = (Vector2)scr.transform.position - new Vector2(0.25f, 0.25f);
-
-            Vector2 sizeV = new(scr.grid.size, scr.grid.size);
-            scr.col.size = sizeV;
-            scr.col.offset = Vector2.zero;
-            
-            scr.Init();
-            scr.grid.Init();
-
-            return scr;
         }
     }
 }

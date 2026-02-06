@@ -50,22 +50,30 @@ public class CastleAssembler : Building
         {
             return false;
         }
-        foreach (var i in recipe.GetAll<CmsInComp>())
+        bool hasAll = true;
+        if (!resources.ForTeam(teamComp.team).InfinityResources)
         {
-            if (!resources.Has(i.AsStack()))
+            foreach (var i in recipe.GetAll<CmsInComp>())
             {
-                return false;
-            }
+                if (!resources.ForTeam(teamComp.team).Has(i.AsStack()))
+                {
+                    hasAll = false;
+                    break;
+                }
+            }    
         }
-        return true; 
+        return hasAll; 
     }
 
     public void StartCraftingUnchecked()
     {
         crafting = true;
-        foreach (var i in recipe.GetAll<CmsInComp>())
+        if (!resources.ForTeam(teamComp.team).InfinityResources)
         {
-            resources.Remove(i.AsStack());
+            foreach (var i in recipe.GetAll<CmsInComp>())
+            {
+                resources.ForTeam(teamComp.team).Remove(i.AsStack());
+            }    
         }
         progress = 0.0f;
     }
@@ -77,20 +85,6 @@ public class CastleAssembler : Building
             StartCraftingUnchecked();
         }
     }
-
-    // public void OnPointerClick(PointerEventData eventData)
-    // {
-    //     castleAssemblerUi.Show(() =>
-    //     {
-    //         castles.StartPlacing(Castles.playerCastle0);
-    //     }, () =>
-    //     {
-    //         if (CanStartCrafting())
-    //         {
-    //             StartCrafting();
-    //         }
-    //     });
-    // }
 }
 
 [Serializable]

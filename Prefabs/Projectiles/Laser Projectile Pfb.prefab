@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164503062568620998}
   - component: {fileID: 995761547099099313}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 3716206092810046031}
   - component: {fileID: 3019989980583289043}
   - component: {fileID: 7064720505308220090}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Laser Projectile Pfb
   m_TagString: Untagged
   m_Icon: {fileID: 0}

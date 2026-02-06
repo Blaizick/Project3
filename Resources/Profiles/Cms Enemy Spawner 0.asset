@@ -15,15 +15,8 @@ MonoBehaviour:
   tag: EnemySpawner0
   comps:
   - rid: 4751459269921734724
-  - rid: 4751459277286146116
-  - rid: 4751459318738976839
-  - rid: 4751459318738976838
-  - rid: 4751459318738976837
-  - rid: 4751459318738976843
-  - rid: 4751459318738976840
-  - rid: 4751459318738976841
-  - rid: 4751459318738976842
-  - rid: 4751459318738976844
+  - rid: 4751459377366696036
+  - rid: 4751459377366696037
   references:
     version: 2
     RefIds:
@@ -31,7 +24,7 @@ MonoBehaviour:
       type: {class: CmsTeamComp, ns: , asm: Assembly-CSharp}
       data:
         team: {fileID: 11400000, guid: 6cf0e4058d1a8e544b6f963420e110ea, type: 2}
-    - rid: 4751459277286146116
+    - rid: 4751459377366696036
       type: {class: CmsEnemySpawnerComp, ns: , asm: Assembly-CSharp}
       data:
         spawnDelay: 10
@@ -40,78 +33,13 @@ MonoBehaviour:
         maxSpawnDst: 40
         castles:
         - {fileID: 11400000, guid: 3854aa27f7449114387ed2c726d66e48, type: 2}
-        - {fileID: 11400000, guid: c2b974ff01c000e4cac59a3b3d5054bc, type: 2}
-    - rid: 4751459318738976837
+    - rid: 4751459377366696037
       type: {class: CmsEnemySpawnerComp, ns: , asm: Assembly-CSharp}
       data:
-        spawnDelay: 10
-        timeNeeded: 270
+        spawnDelay: 9
+        timeNeeded: 30
         minSpawnDst: 20
         maxSpawnDst: 40
         castles:
-        - {fileID: 11400000, guid: 3854aa27f7449114387ed2c726d66e48, type: 2}
         - {fileID: 11400000, guid: c2b974ff01c000e4cac59a3b3d5054bc, type: 2}
-    - rid: 4751459318738976838
-      type: {class: CmsEnemySpawnerComp, ns: , asm: Assembly-CSharp}
-      data:
-        spawnDelay: 3
-        timeNeeded: 240
-        minSpawnDst: 20
-        maxSpawnDst: 40
-        castles:
-        - {fileID: 11400000, guid: 3854aa27f7449114387ed2c726d66e48, type: 2}
-        - {fileID: 11400000, guid: c2b974ff01c000e4cac59a3b3d5054bc, type: 2}
-    - rid: 4751459318738976839
-      type: {class: CmsEnemySpawnEventComp, ns: , asm: Assembly-CSharp}
-      data:
-        timeNeeded: 180
-        minSpawnDst: 20
-        maxSpawnDst: 40
-        castles:
-        - {fileID: 11400000, guid: e428f5908e62a1a4b85afa736eb7e5ae, type: 2}
-    - rid: 4751459318738976840
-      type: {class: CmsEnemySpawnerComp, ns: , asm: Assembly-CSharp}
-      data:
-        spawnDelay: 3
-        timeNeeded: 420
-        minSpawnDst: 20
-        maxSpawnDst: 40
-        castles:
-        - {fileID: 11400000, guid: 3854aa27f7449114387ed2c726d66e48, type: 2}
-        - {fileID: 11400000, guid: c2b974ff01c000e4cac59a3b3d5054bc, type: 2}
-    - rid: 4751459318738976841
-      type: {class: CmsEnemySpawnerComp, ns: , asm: Assembly-CSharp}
-      data:
-        spawnDelay: 10
-        timeNeeded: 450
-        minSpawnDst: 20
-        maxSpawnDst: 40
-        castles:
-        - {fileID: 11400000, guid: 3854aa27f7449114387ed2c726d66e48, type: 2}
-        - {fileID: 11400000, guid: c2b974ff01c000e4cac59a3b3d5054bc, type: 2}
-    - rid: 4751459318738976842
-      type: {class: CmsEnemySpawnEventComp, ns: , asm: Assembly-CSharp}
-      data:
-        timeNeeded: 600
-        minSpawnDst: 20
-        maxSpawnDst: 40
-        castles:
-        - {fileID: 11400000, guid: 6fff37faa0ce3264fa0c38fb3e896041, type: 2}
-    - rid: 4751459318738976843
-      type: {class: CmsEnemySpawnEventComp, ns: , asm: Assembly-CSharp}
-      data:
-        timeNeeded: 360
-        minSpawnDst: 20
-        maxSpawnDst: 40
-        castles:
-        - {fileID: 11400000, guid: a900672d84f85fd4c8dbabac0e8aaa5c, type: 2}
-    - rid: 4751459318738976844
-      type: {class: CmsEnemySpawnerComp, ns: , asm: Assembly-CSharp}
-      data:
-        spawnDelay: 7
-        timeNeeded: 630
-        minSpawnDst: 20
-        maxSpawnDst: 40
-        castles:
-        - {fileID: 11400000, guid: 3854aa27f7449114387ed2c726d66e48, type: 2}
-        - {fileID: 11400000, guid: c2b974ff01c000e4cac59a3b3d5054bc, type: 2}
+        - {fileID: 11400000, guid: 44d3a45ed564aad428ebc0700c326a00, type: 2}

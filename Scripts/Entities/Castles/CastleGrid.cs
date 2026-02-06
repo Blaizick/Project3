@@ -36,12 +36,19 @@ public class CastleGrid : BGrid
 
     public bool HasAllResourcesForBlock(CmsEnt cmsEnt)
     {
-        return resources.Has(ResourcesUtils.GetAllStacks<CmsResourceRequirementComp>(cmsEnt));
+        if (resources.ForTeam(castle.teamComp.team).InfinityResources)
+        {
+            return true;
+        }
+        return resources.ForTeam(castle.teamComp.team).Has(ResourcesUtils.GetAllStacks<CmsResourceRequirementComp>(cmsEnt));
     }
 
     public Building StartConstructing(CmsEnt cmsEnt, Vector2Int pos)
     {
-        resources.Remove(ResourcesUtils.GetAllStacks<CmsResourceRequirementComp>(cmsEnt));
+        if (!resources.ForTeam(castle.teamComp.team).InfinityResources)
+        {
+            resources.ForTeam(castle.teamComp.team).Remove(ResourcesUtils.GetAllStacks<CmsResourceRequirementComp>(cmsEnt));
+        }
         return PlaceBlock(cmsEnt, Blocks.constructBuilding.Get<CmsPfbComp>().pfb.GetComponent<Building>(), pos);
     }
 

@@ -7,10 +7,10 @@ public class Tile : MonoBehaviour
     [NonSerialized] public BGrid grid;
     [NonSerialized] public Vector2Int pos;
     [NonSerialized] public CmsEnt cmsEnt;
-    public SpriteRenderer floorSpriteRenderer;
     
     public virtual void Init()
     {
+        
     }
     public virtual void Update()
     {

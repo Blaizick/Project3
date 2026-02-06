@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -785077019534921619}
   - component: {fileID: -802635108827173210}
   - component: {fileID: 5468458294199465147}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Force Field Pfb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 7660795001418776605}
   - component: {fileID: 6045669833537615702}
   - component: {fileID: 5024347004742776581}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 300
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
   m_Color: {r: 1, g: 0.70000005, b: 0, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
@@ -341,7 +341,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -349,7 +349,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.890625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -357,12 +357,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.24613778, y: 0.5093128}
+    - - {x: -0.2569858, y: 0.44964868}
       - {x: -0.51394606, y: 0.012688667}
-      - {x: -0.25547734, y: -0.5}
-      - {x: 0.2719991, y: -0.5}
+      - {x: -0.25547734, y: -0.4403359}
+      - {x: 0.25681183, y: -0.4511839}
       - {x: 0.51105773, y: 0.0036118925}
-      - {x: 0.2587817, y: 0.50948226}
+      - {x: 0.2587817, y: 0.44981813}
   m_UseDelaunayMesh: 1
 --- !u!114 &6045669833537615702
 MonoBehaviour:
@@ -411,6 +411,10 @@ PrefabInstance:
     - target: {fileID: 2328579854264947290, guid: 56770ce97e71e444581ca02548cfa279, type: 3}
       propertyPath: m_Name
       value: Control Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328579854264947290, guid: 56770ce97e71e444581ca02548cfa279, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2880535108000108555, guid: 56770ce97e71e444581ca02548cfa279, type: 3}
       propertyPath: m_LocalPosition.x
@@ -475,9 +479,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7960684581128088508}
     m_Modifications:
+    - target: {fileID: 266276722634122795, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606523422728110003, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3760991617779989918, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
       propertyPath: m_Name
       value: Activity Flag
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760991617779989918, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334736027019200186, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6590118427785494846, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -518,6 +538,10 @@ PrefabInstance:
     - target: {fileID: 6590118427785494846, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140587847626556847, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

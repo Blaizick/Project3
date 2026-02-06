@@ -43,15 +43,15 @@ MonoBehaviour:
       type: {class: CmsResourceRequirementComp, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
-        count: 10
+        count: 25
     - rid: 2352841189267341389
       type: {class: CmsConstructTimeComp, ns: , asm: Assembly-CSharp}
       data:
-        time: 5
+        time: 3
     - rid: 2352841204727808068
       type: {class: CmsHealComp, ns: , asm: Assembly-CSharp}
       data:
-        heal: 10
+        heal: 5
     - rid: 2352841204727808070
       type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
       data:

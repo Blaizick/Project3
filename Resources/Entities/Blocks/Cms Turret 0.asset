@@ -50,11 +50,11 @@ MonoBehaviour:
     - rid: 2352841159246348382
       type: {class: CmsReloadTimeComp, ns: , asm: Assembly-CSharp}
       data:
-        reloadTime: 1
+        reloadTime: 2
     - rid: 2352841159246348383
       type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
       data:
-        maxHealth: 100
+        maxHealth: 50
     - rid: 2352841159246348384
       type: {class: CmsDamageComp, ns: , asm: Assembly-CSharp}
       data:
@@ -62,7 +62,7 @@ MonoBehaviour:
     - rid: 2352841159246348385
       type: {class: CmsAttackRangeComp, ns: , asm: Assembly-CSharp}
       data:
-        attackRange: 10
+        attackRange: 30
     - rid: 2352841159246348386
       type: {class: CmsRotationComp, ns: , asm: Assembly-CSharp}
       data:
@@ -76,7 +76,7 @@ MonoBehaviour:
       type: {class: CmsResourceRequirementComp, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
-        count: 10
+        count: 25
     - rid: 2352841204727808078
       type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
       data:

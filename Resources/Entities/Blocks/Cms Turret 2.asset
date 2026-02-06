@@ -62,7 +62,7 @@ MonoBehaviour:
     - rid: 2352841159246348385
       type: {class: CmsAttackRangeComp, ns: , asm: Assembly-CSharp}
       data:
-        attackRange: 10
+        attackRange: 40
     - rid: 2352841159246348386
       type: {class: CmsRotationComp, ns: , asm: Assembly-CSharp}
       data:

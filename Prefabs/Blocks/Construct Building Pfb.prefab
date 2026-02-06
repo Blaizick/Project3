@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1691253906517482491}
   - component: {fileID: 2412605149069863316}
   - component: {fileID: 2805146007711176162}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Construct Building Pfb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,6 +225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Control Frame
       objectReference: {fileID: 0}
+    - target: {fileID: 2328579854264947290, guid: 56770ce97e71e444581ca02548cfa279, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2880535108000108555, guid: 56770ce97e71e444581ca02548cfa279, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -296,9 +300,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4633733132354522221}
     m_Modifications:
+    - target: {fileID: 266276722634122795, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606523422728110003, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3760991617779989918, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
       propertyPath: m_Name
       value: Activity Flag
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760991617779989918, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334736027019200186, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6590118427785494846, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -339,6 +359,10 @@ PrefabInstance:
     - target: {fileID: 6590118427785494846, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140587847626556847, guid: a476e567965f9ed46803094cbedf57e0, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

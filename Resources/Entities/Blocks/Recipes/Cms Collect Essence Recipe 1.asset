@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d796f29a93112be4cac9eebe29682c85, type: 3}
   m_Name: Cms Collect Essence Recipe 1
   m_EditorClassIdentifier: Assembly-CSharp::CmsEnt
-  tag: CollectEssenceRecipe0
+  tag: CollectEssenceRecipe1
   comps:
   - rid: 2352841189267341384
   - rid: 2352841189267341385
-  - rid: 2352841204727808085
+  - rid: 2352841204727808084
   references:
     version: 2
     RefIds:
@@ -29,7 +29,7 @@ MonoBehaviour:
       type: {class: CmsCraftTimeComp, ns: , asm: Assembly-CSharp}
       data:
         time: 1
-    - rid: 2352841204727808085
+    - rid: 2352841204727808084
       type: {class: CmsNameComp, ns: , asm: Assembly-CSharp}
       data:
         name: Collect Essence

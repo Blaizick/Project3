@@ -16,7 +16,6 @@ MonoBehaviour:
   comps:
   - rid: 4751459337172418637
   - rid: 2352841136075964667
-  - rid: 2352841136075964668
   - rid: 2352841159246348381
   - rid: 2352841204727808074
   - rid: 2352841204727808077
@@ -24,6 +23,7 @@ MonoBehaviour:
   - rid: 2352841254015074376
   - rid: 4751459337172418648
   - rid: 4751459337172418649
+  - rid: 4751459355267957005
   references:
     version: 2
     RefIds:
@@ -31,10 +31,6 @@ MonoBehaviour:
       type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
       data:
         size: 9
-    - rid: 2352841136075964668
-      type: {class: CmsOffsetComp, ns: , asm: Assembly-CSharp}
-      data:
-        offset: {x: 0, y: 0}
     - rid: 2352841159246348381
       type: {class: CmsCastlePfbComp, ns: , asm: Assembly-CSharp}
       data:
@@ -42,11 +38,11 @@ MonoBehaviour:
     - rid: 2352841204727808074
       type: {class: CmsHealthComp, ns: , asm: Assembly-CSharp}
       data:
-        maxHealth: 1000
+        maxHealth: 500
     - rid: 2352841204727808077
       type: {class: CmsRecipeComp, ns: , asm: Assembly-CSharp}
       data:
-        recipe: {fileID: 11400000, guid: 0020baf0aa4308b4ba76f0170f235cd8, type: 2}
+        recipe: {fileID: 11400000, guid: b265712ef112fdb4b853f9001d70ad11, type: 2}
     - rid: 2352841254015074375
       type: {class: CmsAgreRangeComp, ns: , asm: Assembly-CSharp}
       data:
@@ -68,3 +64,7 @@ MonoBehaviour:
       type: {class: CmsDisappearTimeComp, ns: , asm: Assembly-CSharp}
       data:
         disappearTime: 1
+    - rid: 4751459355267957005
+      type: {class: CmsRevealRangeComp, ns: , asm: Assembly-CSharp}
+      data:
+        revealRange: 25

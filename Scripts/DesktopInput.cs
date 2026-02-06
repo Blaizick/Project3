@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using BJect;
+using Unity.Cinemachine;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
@@ -49,15 +51,15 @@ public class DesktopInput : MonoBehaviour
 
     [NonSerialized, Inject] public BuildingsSystem buildings;
     [NonSerialized, Inject] public CastlesSystem castles;
-    [NonSerialized, Inject] public Ui ui;
     [NonSerialized, Inject] public DiContainer container;
+    [NonSerialized, Inject] public CinemachineCamera mainCamera;
 
     /// <summary>
     /// Can control whether buildings or castles
     /// </summary>
     [NonSerialized] public bool controlBuildsMode;
 
-    [NonSerialized] public BGrid sCastleGrid;
+    [NonSerialized] public SCastleGrid sCastleGrid;
     [NonSerialized] public CmsEnt sCastleEnt;
 
     [NonSerialized] public bool pointerOverUi;
@@ -198,10 +200,10 @@ public class DesktopInput : MonoBehaviour
             {
                 if (!pointerOverUi)
                 {
-                    if (castles.ForTeam(Teams.ally).CanPlaceOne())
+                    if (castles.ForTeam(Teams.ally).CanPlaceOne() && castles.ForTeam(Teams.ally).CanSpawn(mouseWorldPos, sCastleEnt))
                     {
                         PlaceSCastle();
-                    }    
+                    }
                 }
             }
         }
@@ -258,11 +260,10 @@ public class DesktopInput : MonoBehaviour
         }
         controlSelectionImgRoot.SetActive(controlSelection);
 
-
-        if (actions.Player.CameraMoveBtn.IsPressed())
+        if (state == InputState.PlaceCastle)
         {
-            Vector2 mov = -actions.Player.CameraMove.ReadValue<Vector2>() * 0.003f * Camera.main.orthographicSize;
-            Camera.main.transform.position += (Vector3)mov;
+            sCastleGrid.awailable = castles.ForTeam(Teams.ally).CanPlaceOne() && 
+                castles.ForTeam(Teams.ally).CanSpawn(mouseWorldPos, sCastleEnt);
         }
 
         if (actions.Player.Break.WasPerformedThisFrame())
@@ -356,9 +357,15 @@ public class DesktopInput : MonoBehaviour
         breakSelectionImgRoot.SetActive(breaking);
 
         float zoomDt = -actions.Player.CameraZoom.ReadValue<float>() * 0.5f;
-        Camera.main.orthographicSize += zoomDt;
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 2, 20);    
+        mainCamera.Lens.OrthographicSize += zoomDt;
+        mainCamera.Lens.OrthographicSize = Mathf.Clamp(mainCamera.Lens.OrthographicSize, 2, 20);    
     
+        if (actions.Player.CameraMoveBtn.IsPressed())
+        {
+            Vector2 mov = -actions.Player.CameraMove.ReadValue<Vector2>() * 0.003f * mainCamera.Lens.OrthographicSize;
+            mainCamera.transform.position += (Vector3)mov;
+        }
+
         blockTooltipUi.root.SetActive(sPlanBlock);
         if (sPlanBlock)
         {
@@ -389,7 +396,7 @@ public class DesktopInput : MonoBehaviour
         {
             if (controlBuildsMode)
             {
-                foreach (var i in buildings.ForTeam(Teams.ally).all)
+                foreach (var i in controlledBuilds)
                 {
                     if (i && i.controlFrameRoot)
                     {
@@ -399,7 +406,7 @@ public class DesktopInput : MonoBehaviour
             }
             else
             {
-                foreach (var i in castles.ForTeam(Teams.ally).all)
+                foreach (var i in controlledCastles)
                 {
                     if (i)
                     {
@@ -431,18 +438,12 @@ public class DesktopInput : MonoBehaviour
     public void PlaceSCastle()
     {
         var c = castles.ForTeam(Teams.ally);
-
-        if (c.castlesStored > 0 && 
-            c.all.Count < c.maxCastles && 
-            c.CanSpawn(mouseWorldPos, sCastleEnt))
-        {
-            c.castlesStored--;
-            c.Spawn(mouseWorldPos, sCastleEnt);
-        }
+        c.castlesStored--;
+        c.SpawnUnchecked(mouseWorldPos, sCastleEnt);
     }
     public void SelectSCastle(CmsEnt cmsEnt)
     {
-        var grid = container.Instantiate(Profiles.playerCastlesProfile.Get<CmsGridPfbComp>().gridPfb);
+        var grid = container.Instantiate(Profiles.basePrefabs.Get<CmsSCastleGridPfbComp>().pfb);
         grid.Set(cmsEnt);
         grid.Init();
         sCastleGrid = grid;
@@ -475,4 +476,15 @@ public class CmsPfbComp : CmsComp
 public class CmsSpriteComp : CmsComp
 {
     public Sprite sprite;
+}
+
+[Serializable]
+public class CmsAwailableColComp : CmsComp
+{
+    public Color col;
+}
+[Serializable]
+public class CmsUnawailableColComp : CmsComp
+{
+    public Color col;    
 }

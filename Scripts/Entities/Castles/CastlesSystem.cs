@@ -4,6 +4,19 @@ using System.Linq;
 using BJect;
 using UnityEngine;
 
+[Serializable]
+public class CmsMaxCastlesStoredForTeamComp : CmsComp
+{
+    public int maxCastlesStored;
+    public CmsEnt team;
+}
+[Serializable]
+public class CmsMaxCastlesForTeamComp : CmsComp
+{
+    public int maxCastles;
+    public CmsEnt team;
+}
+
 public class CastlesSystem
 {
     public List<Castle> all = new();
@@ -13,9 +26,23 @@ public class CastlesSystem
 
     public void Init()
     {
+        var allMaxStored = Setups.Setup0.GetAll<CmsMaxCastlesStoredForTeamComp>();
+        var allMax = Setups.Setup0.GetAll<CmsMaxCastlesForTeamComp>();
+
         foreach (var team in Teams.all)
         {
             teamsDic[team] = container.Create<TeamCastlesSystem>(new(){team});
+
+            {
+                var tmp = allMax.Find(i => i.team == team.cmsEnt);
+                teamsDic[team].maxCastles = tmp != null ? tmp.maxCastles : teamsDic[team].maxCastles;
+            }
+            {
+                var tmp = allMaxStored.Find(i => i.team == team.cmsEnt);
+                teamsDic[team].maxCastlesStored = tmp != null ? tmp.maxCastlesStored : teamsDic[team].maxCastlesStored;
+            }
+            
+            teamsDic[team].Init();
         }
     }
 
@@ -56,12 +83,12 @@ public class CastlesSystem
 public class TeamCastlesSystem
 {
     public List<Castle> all = new();
+    public int count;
 
-    [Inject] public Castle.Factory castlesFactory;
     [Inject] public CastlesSystem castles;
+    [Inject] public DiContainer container;
 
     public Team team;
-    public CmsEnt cmsEnt;
 
     public int castlesStored;
     public int maxCastlesStored;
@@ -70,14 +97,10 @@ public class TeamCastlesSystem
     public TeamCastlesSystem(Team team)
     {
         this.team = team;
-        cmsEnt = team.cmsEnt;
     }
 
     public void Init()
     {
-        maxCastlesStored = cmsEnt.Get<CmsMaxCastlesStoredComp>().maxStored;
-        maxCastles = cmsEnt.Get<CmsMaxCastlesComp>().max;
-        
         castlesStored = 0;
     }
     public void Update()
@@ -88,6 +111,16 @@ public class TeamCastlesSystem
     public void Set(Team team)
     {
         this.team = team;
+    }
+
+    public AppearCastleGrid SpawnUncheckedWithAppearAnim(Vector2 pos, CmsEnt cmsEnt)
+    {
+        var scr = container.Instantiate(Profiles.basePrefabs.Get<CmsCastleGridAppearPfbComp>().pfb);
+        scr.team = team;
+        scr.transform.position = pos;
+        scr.Set(cmsEnt);
+        scr.Init();
+        return scr;
     }
 
     public Castle Spawn(Vector2 pos, CmsEnt cmsEnt)
@@ -101,27 +134,44 @@ public class TeamCastlesSystem
 
     public Castle SpawnUnchecked(Vector2 pos, CmsEnt cmsEnt)
     {
-        var scr = castlesFactory.Use(pos, cmsEnt, team);
+        var scr = container.Instantiate(cmsEnt.Get<CmsCastlePfbComp>().pfb);
+        scr.cmsEnt = cmsEnt;
+        scr.teamComp.team = team;
+
+        scr.transform.position = pos;
+
+        scr.grid.Set(cmsEnt, scr);
+
+        var shadow = container.Instantiate(Profiles.basePrefabs.Get<CmsShadowPfbComp>().shadowPfb, scr.transform);
+        shadow.transform.localScale = new Vector3(scr.grid.size, scr.grid.size, 1.0f);
+        shadow.transform.position = (Vector2)scr.transform.position - new Vector2(0.25f, 0.25f);
+
+        Vector2 sizeV = new(scr.grid.size, scr.grid.size);
+        scr.col.size = sizeV;
+        scr.col.offset = Vector2.zero;
+            
+        scr.Init();
+        scr.grid.Init();
+
         castles.Add(scr);
         foreach (var b in cmsEnt.GetAll<CmsCastlePlaceBlockComp>())
         {
             scr.grid.PlaceBlock(b.block, b.pos);
         }
+        count++;
+
         return scr;
     }
 
-    public bool HasCastle() => castlesStored > 0;
-
-    public bool CanPlaceOne() => castlesStored > 0 && all.Count < maxCastles;
+    public bool CanPlaceOne() => castlesStored > 0 && count < maxCastles;
 
     public bool CanSpawn(Vector2 pos, CmsEnt cmsEnt)
     {
-        var hits = Physics2D.OverlapCircleAll(pos, cmsEnt.Get<CmsGridSizeComp>().size);
-        if (hits != null && hits.Count() > 0)
-        {
-            return false;
-        }
-        return true;
+        return !Physics2D.OverlapBoxAll(pos, 
+                new(cmsEnt.Get<CmsGridSizeComp>().size, 
+                cmsEnt.Get<CmsGridSizeComp>().size), 0).
+            ToList().
+            Find(i => i.TryGetComponent<Castle>(out var c));
     }
 }
 
@@ -129,4 +179,10 @@ public class TeamCastlesSystem
 public class CmsGridPfbComp : CmsComp
 {
     public BGrid gridPfb;
+}
+
+[Serializable]
+public class CmsCastleGridAppearPfbComp : CmsComp
+{
+    public AppearCastleGrid pfb;
 }

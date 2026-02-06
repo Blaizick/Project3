@@ -16,7 +16,6 @@ MonoBehaviour:
   comps:
   - rid: 4751459337172418640
   - rid: 2352841136075964667
-  - rid: 2352841136075964668
   - rid: 2352841159246348380
   - rid: 2352841204727808072
   - rid: 2352841254015074374
@@ -25,6 +24,7 @@ MonoBehaviour:
   - rid: 4751459277286146118
   - rid: 4751459337172418652
   - rid: 4751459337172418657
+  - rid: 4751459377366696015
   references:
     version: 2
     RefIds:
@@ -32,10 +32,6 @@ MonoBehaviour:
       type: {class: CmsGridSizeComp, ns: , asm: Assembly-CSharp}
       data:
         size: 9
-    - rid: 2352841136075964668
-      type: {class: CmsOffsetComp, ns: , asm: Assembly-CSharp}
-      data:
-        offset: {x: 0, y: 0}
     - rid: 2352841159246348380
       type: {class: CmsCastlePfbComp, ns: , asm: Assembly-CSharp}
       data:
@@ -75,3 +71,7 @@ MonoBehaviour:
       type: {class: CmsDisappearTimeComp, ns: , asm: Assembly-CSharp}
       data:
         disappearTime: 1
+    - rid: 4751459377366696015
+      type: {class: CmsTargetMinDstComp, ns: , asm: Assembly-CSharp}
+      data:
+        minDst: 3

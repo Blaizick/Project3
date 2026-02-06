@@ -66,6 +66,7 @@ public static class Profiles
     public static CmsEnt enemySpawner0;
     public static CmsEnt capturePoints;
     public static CmsEnt basePrefabs;
+    public static CmsEnt fogOfWar;
 
     public static void Init()
     {
@@ -74,7 +75,13 @@ public static class Profiles
         enemySpawner0 = Cms.Get("EnemySpawner0");
         capturePoints = Cms.Get("CapturePoints0");
         basePrefabs = Cms.Get("BasePrefabs");
+        fogOfWar = Cms.Get("FogOfWar");
     }
+}
+
+public static class Setups
+{
+    public static CmsEnt Setup0 => Cms.Get("Setup0");
 }
 
 public static class Castles

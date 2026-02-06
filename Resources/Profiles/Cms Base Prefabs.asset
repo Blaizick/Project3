@@ -16,6 +16,8 @@ MonoBehaviour:
   comps:
   - rid: 4751459337172418631
   - rid: 4751459337172418647
+  - rid: 4751459355267957010
+  - rid: 4751459377366696029
   references:
     version: 2
     RefIds:
@@ -27,3 +29,11 @@ MonoBehaviour:
       type: {class: CmsDisappearCastleGridPfbComp, ns: , asm: Assembly-CSharp}
       data:
         pfb: {fileID: 2236892258972614332, guid: 5b5a96797dc3516479003c7997f176b6, type: 3}
+    - rid: 4751459355267957010
+      type: {class: CmsCastleGridAppearPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 8891125871854026928, guid: da8d6baf770223845bc6a39eb9d44edd, type: 3}
+    - rid: 4751459377366696029
+      type: {class: CmsSCastleGridPfbComp, ns: , asm: Assembly-CSharp}
+      data:
+        pfb: {fileID: 44902992434656459, guid: 1d221742d13083640a49835085f00f7b, type: 3}

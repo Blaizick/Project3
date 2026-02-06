@@ -67,7 +67,7 @@ public class CapturePoint : MonoBehaviour
         
             foreach (var r in cmsEnt.GetAll<CmsResourceStackComp>())
             {
-                resources.Add(new(r.resource, r.count * cp));
+                resources.ForTeam(teamComp.team).Add(new(r.resource, r.count * cp));
             }
         
             progress += cp;
@@ -142,4 +142,9 @@ public class CapturePointSystem
 public class CmsCapturePointPfbComp : CmsComp
 {
     public CapturePoint pfb;
+}
+
+public class CmsDamageBonusComp : CmsComp
+{
+    public float damageBonus;
 }

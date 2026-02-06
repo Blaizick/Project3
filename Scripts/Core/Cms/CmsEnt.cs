@@ -16,7 +16,9 @@ public class CmsEnt : ScriptableObject
 
     public CmsComp Get(Type type)
     {
-        var i = comps.Find(p => type.IsAssignableFrom(p.GetType()));
+        if (comps == null)
+            return null;
+        var i = comps.Find(p => p != null && type.IsAssignableFrom(p.GetType()));
         if (i == null)
         {
             UnityEngine.Debug.LogError($"No component of type: {type.Name} found on entity with tag: {tag}!");
@@ -30,8 +32,10 @@ public class CmsEnt : ScriptableObject
 
     public List<T> GetAll<T>() where T : CmsComp
     {
+        if (comps == null)
+            return new();
         var ret = comps.
-            FindAll(p => typeof(T).IsAssignableFrom(p.GetType())).
+            FindAll(p => p != null && typeof(T).IsAssignableFrom(p.GetType())).
             Cast<T>().
             ToList();
         return ret == null ? new() : ret;
@@ -39,10 +43,12 @@ public class CmsEnt : ScriptableObject
 
     public bool TryGet(Type type, out object obj)
     {
-        int id = comps.FindIndex(p => type.IsAssignableFrom(p.GetType()));
+        obj = null;
+        if (comps == null)
+            return false;
+        int id = comps.FindIndex(p => p != null && type.IsAssignableFrom(p.GetType()));
         if (id <= 0)
         {
-            obj = null;
             return false;
         }
         obj = comps[id];
@@ -54,6 +60,17 @@ public class CmsEnt : ScriptableObject
         var s = TryGet(typeof(T), out o);
         obj = s ? (T)o : null;
         return s;
+    }
+
+    public bool Has(Type type)
+    {
+        if (comps == null)
+            return false;
+        return comps.FindIndex(p => p != null && type.IsAssignableFrom(p.GetType())) > -1;
+    }
+    public bool Has<T>() where T : CmsComp
+    {
+        return Has(typeof(T));
     }
 }
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3716206092810046031}
   - component: {fileID: 3019989980583289043}
   - component: {fileID: 1995342308020390954}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bullet Projectile Pfb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 400
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5454452688900833447, guid: 03f78142923013f40bc581cf168d6d6f, type: 3}
-  m_Color: {r: 0.8584906, g: 0.77157545, b: 0.20652366, a: 1}
+  m_Sprite: {fileID: 1252243683051303324, guid: 97a668a825a4925498c8c98e9a1a49a1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

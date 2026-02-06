@@ -16,6 +16,7 @@ MonoBehaviour:
   comps:
   - rid: 2352841159246348356
   - rid: 4751459269921734726
+  - rid: 4751459355267956814
   references:
     version: 2
     RefIds:
@@ -27,3 +28,6 @@ MonoBehaviour:
       type: {class: CmsEnemyTeamComp, ns: , asm: Assembly-CSharp}
       data:
         enemyTeam: {fileID: 11400000, guid: 6ae8c1396a9e6e3459c6657c6fe74160, type: 2}
+    - rid: 4751459355267956814
+      type: {class: CmsInfinityResourcesTag, ns: , asm: Assembly-CSharp}
+      data: 

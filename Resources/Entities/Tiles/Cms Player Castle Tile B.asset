@@ -17,13 +17,16 @@ MonoBehaviour:
   - rid: 4751459337172418635
   - rid: 4751459337172418636
   - rid: 4751459337172418644
+  - rid: 4751459355267957007
+  - rid: 4751459377366696030
+  - rid: 4751459377366696034
   references:
     version: 2
     RefIds:
     - rid: 4751459337172418635
       type: {class: CmsTilePfbComp, ns: , asm: Assembly-CSharp}
       data:
-        pfb: {fileID: 892652266389896989, guid: c781554172633b14b9944f614496aefe, type: 3}
+        pfb: {fileID: -2556022810697303489, guid: 979ce191bc3352e41856ff61e6082ef5, type: 3}
     - rid: 4751459337172418636
       type: {class: CmsAppearTimeComp, ns: , asm: Assembly-CSharp}
       data:
@@ -32,3 +35,15 @@ MonoBehaviour:
       type: {class: CmsShaderDensityComp, ns: , asm: Assembly-CSharp}
       data:
         density: 20
+    - rid: 4751459355267957007
+      type: {class: CmsSpriteComp, ns: , asm: Assembly-CSharp}
+      data:
+        sprite: {fileID: -796100680, guid: cd35c62b941774449b1f29851f69e231, type: 3}
+    - rid: 4751459377366696030
+      type: {class: CmsAwailableColComp, ns: , asm: Assembly-CSharp}
+      data:
+        col: {r: 0.4481132, g: 0.59528285, b: 1, a: 0.78431374}
+    - rid: 4751459377366696034
+      type: {class: CmsUnawailableColComp, ns: , asm: Assembly-CSharp}
+      data:
+        col: {r: 1, g: 0.015686275, b: 0, a: 0.78431374}

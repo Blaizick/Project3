@@ -120,6 +120,27 @@ public static class BlockUtils
 
         sb.Append(cmsEnt.Get<CmsDescComp>().desc);
 
+        return sb.ToString();
+    }
+    
+    public static string GetBuildDesc(CmsEnt cmsEnt)
+    {
+        return $"{GetDesc(cmsEnt)}\n{BuildCostAsStr(cmsEnt)}"; 
+    }
+
+    public static string BuildCostAsStr(CmsEnt cmsEnt)
+    {
+        StringBuilder sb = new();
+
+        var reqs = cmsEnt.GetAll<CmsResourceRequirementComp>();
+        if (reqs.Count > 0)
+        {
+            sb.Append("Build Cost:\n");
+            foreach (var r in reqs)
+            {
+                sb.Append($"{r.AsStack()}\n");
+            }   
+        }
         if (cmsEnt.TryGet<CmsRecipeComp>(out var recipeComp))
         {
             var recipe = recipeComp.recipe;
@@ -145,28 +166,6 @@ public static class BlockUtils
             }
 
             sb.Append($"Craft Time: {recipe.Get<CmsCraftTimeComp>().time}\n");
-        }
-
-        return sb.ToString();
-    }
-    
-    public static string GetBuildDesc(CmsEnt cmsEnt)
-    {
-        return $"{GetDesc(cmsEnt)}\n{BuildCostAsStr(cmsEnt)}"; 
-    }
-
-    public static string BuildCostAsStr(CmsEnt cmsEnt)
-    {
-        StringBuilder sb = new();
-
-        var reqs = cmsEnt.GetAll<CmsResourceRequirementComp>();
-        if (reqs.Count > 0)
-        {
-            sb.Append("Build Cost:\n");
-            foreach (var r in reqs)
-            {
-                sb.Append($"{r.AsStack()}\n");
-            }
         }
 
         return sb.ToString();

@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using BJect;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyCastle : Castle
@@ -11,6 +9,8 @@ public class EnemyCastle : Castle
 
     public override void Update()
     {
+        moving = false;
+
         var hits = Physics2D.OverlapCircleAll(transform.position, cmsEnt.Get<CmsAgreRangeComp>().range).ToList();
         Castle target = null;
         float minDst = 0.0f;
@@ -29,9 +29,22 @@ public class EnemyCastle : Castle
         }
         if (target)
         {
-            SetMovePos(target.transform.position);
+            if (!Physics2D.RaycastAll(transform.position, 
+                    target.transform.position - transform.position, 
+                    cmsEnt.Get<CmsTargetMinDstComp>().minDst).
+                ToList().
+                Find(r => r.transform.gameObject == target.gameObject))
+            {
+                SetMovePos(target.transform.position);
+            }
         }
 
         base.Update();
     }
+}
+
+[Serializable]
+public class CmsTargetMinDstComp : CmsComp
+{
+    public float minDst;
 }

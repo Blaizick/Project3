@@ -76,8 +76,8 @@ public class Ui : MonoBehaviour
 
     public void Update()
     {
-        essenceText.text = $"{CmsResources.essence.Get<CmsNameComp>().name}: {(int)resources.Get(CmsResources.essence)}";
-        quintessenceText.text = $"{CmsResources.quintessence.Get<CmsNameComp>().name}: {(int)resources.Get(CmsResources.quintessence)}";
+        essenceText.text = $"{CmsResources.essence.Get<CmsNameComp>().name}: {(int)resources.ForTeam(Teams.ally).Get(CmsResources.essence)}";
+        quintessenceText.text = $"{CmsResources.quintessence.Get<CmsNameComp>().name}: {(int)resources.ForTeam(Teams.ally).Get(CmsResources.quintessence)}";
 
         timeText.text = TextUtils.TimeToString(Time.time);
         timeLeftText.text = TextUtils.TimeToString(enemySpawner.TimeLeft);

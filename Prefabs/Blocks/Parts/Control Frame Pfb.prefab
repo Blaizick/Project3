@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2880535108000108555}
   - component: {fileID: 4203245093555704072}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Control Frame Pfb
   m_TagString: Untagged
   m_Icon: {fileID: 0}

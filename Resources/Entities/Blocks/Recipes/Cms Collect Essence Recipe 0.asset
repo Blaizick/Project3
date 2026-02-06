@@ -24,7 +24,7 @@ MonoBehaviour:
       type: {class: CmsOutComp, ns: , asm: Assembly-CSharp}
       data:
         resource: {fileID: 11400000, guid: 4d5b2d737e34990498e43c1e62ce1dbf, type: 2}
-        count: 1
+        count: 3
     - rid: 2352841189267341385
       type: {class: CmsCraftTimeComp, ns: , asm: Assembly-CSharp}
       data:

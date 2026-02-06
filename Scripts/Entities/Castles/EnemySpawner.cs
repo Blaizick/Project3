@@ -8,8 +8,6 @@ using UnityEngine;
 public class EnemySpawner
 {
     public CastlesSystem castles;
-    public Player player;
-    public DiContainer container;
 
     public float spawnProgress;
 
@@ -26,10 +24,8 @@ public class EnemySpawner
 
     public float TimeLeft => lastSpawnerComp.timeNeeded - Time.time; 
 
-    public EnemySpawner(Player player, DiContainer container, CastlesSystem castles, MapSystem map)
+    public EnemySpawner(CastlesSystem castles, MapSystem map)
     {
-        this.player = player;
-        this.container = container;
         this.castles = castles;
         this.map = map;
     }
@@ -109,7 +105,7 @@ public class EnemySpawner
             }
 
             var castle = curSpawnComp.castles[UnityEngine.Random.Range(0, curSpawnComp.castles.Count)];
-            castles.ForTeam(team).SpawnUnchecked(spawnPos, castle);
+            castles.ForTeam(team).SpawnUncheckedWithAppearAnim(spawnPos, castle);
 
             spawnProgress = 0.0f;
         }
@@ -133,7 +129,7 @@ public class EnemySpawner
                 return false;
             }
         }
-        while (Vector2.Distance(ans, castle.grid.transform.position) < min && !map.IsPositionInBounds(ans));
+        while (Vector2.Distance(ans, castle.grid.transform.position) < min || !map.IsPositionInBounds(ans));
         return true;        
     }
 }
